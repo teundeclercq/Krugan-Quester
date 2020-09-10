@@ -9,22 +9,30 @@ import org.dreambot.api.methods.MethodProvider;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.wrappers.interactive.GameObject;
 
-public class GetGrainNode extends Node {
+public class GetGrainNode extends CookAssistant {
     public GetGrainNode(Main main, Utility utility) {
         super(main, utility);
     }
 
     @Override
-    public boolean validate() {
-        return !main.getInventory().contains("Grain") &&
-                !main.getInventory().contains("Pot of Flour");
+    public int priority() {
+        return 3;
     }
 
     @Override
-    public void execute() {
+    public boolean validate() {
+        return !getItems() && isPot() && !isGrain() && !isFlour() && isEgg() && isBucket() &&
+                isMilk();
+    }
+
+    @Override
+    public int execute() {
         main.setStateClient("Getting grain for flour");
         Area area = AreaProvider.CooksAssistant.grainArea;
-
+        if (main.getInventory().contains("Grain")) {
+            setMilk(true);
+            return (int) Calculations.nextGaussianRandom(400, 200);
+        }
         if (!area.contains(main.getLocalPlayer())) {
             main.getWalking().walk(area.getRandomTile());
             MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
@@ -35,5 +43,6 @@ public class GetGrainNode extends Node {
                 MethodProvider.sleepUntil(()-> main.getInventory().contains("Grain"), Calculations.random(3000, 5500));
             }
         }
+        return (int) Calculations.nextGaussianRandom(400, 200);
     }
 }

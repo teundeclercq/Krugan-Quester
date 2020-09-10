@@ -15,22 +15,18 @@ import org.dreambot.api.wrappers.interactive.NPC;
 
 import static org.dreambot.api.methods.MethodProvider.log;
 
-public class EndQuestNode extends Node {
+public class EndQuestNode extends CookAssistant {
     public EndQuestNode(Main main, Utility utility) {
         super(main, utility);
     }
 
     @Override
     public boolean validate() {
-        main.getTabs().open(Tab.QUEST);
-        return (main.getInventory().contains("Pot of flour") ||
-                main.getInventory().contains("Bucket of milk") ||
-                main.getInventory().contains("Egg")) &&
-                main.getQuests().isStarted(FreeQuest.COOKS_ASSISTANT);
+        return getItems();
     }
 
     @Override
-    public void execute() {
+    public int execute() {
         main.setStateClient("Ending quest");
         Area area = AreaProvider.CooksAssistant.cookArea;
         if (!area.contains(main.getLocalPlayer())) {
@@ -42,6 +38,7 @@ public class EndQuestNode extends Node {
                 main.stop();
             }
         }
+        return (int) Calculations.nextGaussianRandom(400, 200);
     }
 
     public void TalkToCook(NPCs npcs, Dialogues dialogues) {

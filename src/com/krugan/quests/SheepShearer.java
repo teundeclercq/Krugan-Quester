@@ -11,11 +11,11 @@ public class SheepShearer extends Node {
 
     @Override
     public boolean validate() {
-        return main.getQuest().equals(this);
+        return true;
     }
 
     @Override
-    public void execute() {
-        main.log("Sheep shearer is running");
+    public int execute() {
+        main.log("Sheep shearer is running");return 0;
     }
 }

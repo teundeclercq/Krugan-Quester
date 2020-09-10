@@ -12,18 +12,18 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.wrappers.interactive.NPC;
 
-public class StartQuestNode extends Node {
+public class StartQuestNode extends CookAssistant {
     public StartQuestNode(Main main, Utility utility) {
         super(main, utility);
     }
 
     @Override
     public boolean validate() {
-        return !main.getQuests().isStarted(FreeQuest.COOKS_ASSISTANT);
+        return main.getPlayerSettings().getConfig(FreeQuest.COOKS_ASSISTANT.getConfigID()) == 0;
     }
 
     @Override
-    public void execute() {
+    public int execute() {
         main.setStateClient("Starting the quest");
         Area area = AreaProvider.CooksAssistant.cookArea;
         if (!area.contains(main.getLocalPlayer())) {
@@ -32,6 +32,8 @@ public class StartQuestNode extends Node {
         } else {
             TalkToCook(main.getNpcs(), main.getDialogues());
         }
+        return (int) Calculations.nextGaussianRandom(400, 200);
+
     }
 
     public void TalkToCook(NPCs npcs, Dialogues dialogues) {

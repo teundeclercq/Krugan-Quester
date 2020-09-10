@@ -8,23 +8,31 @@ import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.MethodProvider;
 import org.dreambot.api.wrappers.interactive.GameObject;
 
-public class GetFlourNode extends Node {
+public class GetFlourNode extends CookAssistant {
 
     public GetFlourNode(Main main, Utility utility) {
         super(main, utility);
     }
 
     @Override
-    public boolean validate() {
-        return !main.getInventory().contains("Pot of flour") &&
-                main.getInventory().contains("Pot") &&
-                main.getInventory().contains("Grain");
+    public int priority() {
+        return 2;
     }
 
     @Override
-    public void execute() {
-        main.setStateClient("Getting the pot of flour");
+    public boolean validate() {
+        return !getItems() && isPot() && isGrain() && !isFlour() && isEgg() && isBucket() &&
+                isMilk();
+    }
 
+    @Override
+    public int execute() {
+        main.setStateClient("Getting the flour");
+        if (main.getInventory().contains("Pot of flour")) {
+            setFlour(true);
+            setGotItems(true);
+            return (int) Calculations.nextGaussianRandom(400, 200);
+        }
         MethodProvider.log("GetFlour: Start");
         Utility.TravelTo(AreaProvider.CooksAssistant.windMillArea);
         MethodProvider.sleep(Calculations.random(1000, 2000));
@@ -47,5 +55,6 @@ public class GetFlourNode extends Node {
             MethodProvider.sleep(Calculations.random(4000, 5000));
         }
         MethodProvider.log("GetFlour: End");
+        return (int) Calculations.nextGaussianRandom(400, 200);
     }
 }

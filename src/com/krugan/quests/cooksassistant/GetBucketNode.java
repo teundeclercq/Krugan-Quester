@@ -10,24 +10,35 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.items.GroundItem;
 
-public class GetBucketNode extends Node {
+public class GetBucketNode extends CookAssistant {
     public GetBucketNode(Main main, Utility utility) {
         super(main, utility);
     }
 
     @Override
-    public boolean validate() {
-        return !main.getInventory().contains("Bucket") &&
-                !main.getInventory().contains("Bucket of Milk") &&
-                !main.getInventory().contains("Egg") &&
-                !main.getInventory().contains("Pot of flour");
+    public int priority() {
+        return 7;
     }
 
     @Override
-    public void execute() {
-        main.setStateClient("Getting bucket");
-        Area basement = AreaProvider.CooksAssistant.basementArea;
+    public boolean validate() {
+        return !getItems() && !isPot() && !isGrain() && !isFlour() && !isEgg() && !isBucket() &&
+                !isMilk();
+    }
 
+    @Override
+    public int execute() {
+        main.setStateClient("Getting bucket");
+        if (main.getInventory().contains("Bucket")) {
+            setBucket(true);
+            return (int) Calculations.nextGaussianRandom(400, 200);
+        }
+        Area basement = AreaProvider.CooksAssistant.basementArea;
+        Area cookArea = AreaProvider.CooksAssistant.cookArea;
+        if (!cookArea.contains(main.getLocalPlayer())) {
+            main.getWalking().walk(cookArea.getCenter());
+            MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2000, 4000));
+        }
         if (!basement.contains(main.getLocalPlayer())) {
             GameObject trapdoor = main.getGameObjects().closest("Trapdoor");
             if (trapdoor != null) {
@@ -50,5 +61,6 @@ public class GetBucketNode extends Node {
             }
             MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
         }
+        return (int) Calculations.nextGaussianRandom(400, 200);
     }
 }

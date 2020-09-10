@@ -8,17 +8,21 @@ import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.quest.book.Quest;
 import org.dreambot.api.methods.quest.book.Quest$State;
+import org.dreambot.api.methods.tabs.Tab;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 
 @ScriptManifest(category = Category.QUEST, name = "KruganQuester", author = "Krugan", version = 1.1)
 public class Main extends AbstractScript {
-    private ArrayList<Node> nodes;
+    private ArrayList<Node> cache = new ArrayList<>();
+    private ArrayList<Node> open = new ArrayList<>();
     private boolean isRunning;
     private String stateClient;
 
@@ -39,19 +43,18 @@ public class Main extends AbstractScript {
 
     @Override
     public int onLoop() {
-//        log(String.valueOf(settings.length));
-//        for(int setting : settings) {
-//            log(String.valueOf(setting));
-//        }
-        FreeQuest.DEMON_SLAYER.(getClient());
-        if (isRunning) {
-            for (Node node: nodes) {
-                    if (node.validate()) {
-                        node.execute();
-                    }
-                }
-        }
-        return Calculations.random(300, 400);
+        int delay = Calculations.random(300, 400);
+
+           if (isRunning) {
+               if (!cache.isEmpty()) {
+                   open.clear();
+                   open.addAll(cache.stream().filter(Node::validate).collect(Collectors.toList()));
+                   if (!open.isEmpty()) {
+                      delay = getSuitableOpenNode().execute();
+                   }
+               }
+           }
+        return delay;
     }
 
     public void setRunning(boolean running) {
@@ -59,10 +62,11 @@ public class Main extends AbstractScript {
     }
 
     public void setQuest(ArrayList<Node> quest) {
-        this.nodes = quest;
+        this.cache = quest;
     }
+
     public ArrayList<Node> getQuest() {
-        return this.nodes;
+        return this.cache;
     }
 
     @Override
@@ -70,5 +74,20 @@ public class Main extends AbstractScript {
         g.setColor(Color.RED);
         g.setFont(new Font("Avenier", Font.PLAIN, 12));
         g.drawString("State: " + stateClient, 10, 35);
+    }
+
+    public Node getSuitableOpenNode() {
+        Node node = null;
+        if (!open.isEmpty()) {
+            node = open.get(0);
+            if (open.size() > 1) {
+                for (Node possible  : open) {
+                    if (node.priority() < possible.priority()) {
+                        node = possible;
+                    }
+                }
+            }
+        }
+        return node;
     }
 }

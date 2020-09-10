@@ -9,21 +9,30 @@ import org.dreambot.api.methods.MethodProvider;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.wrappers.items.GroundItem;
 
-public class GetPotNode extends Node {
+public class GetPotNode extends CookAssistant {
     public GetPotNode(Main main, Utility utility) {
         super(main, utility);
     }
 
     @Override
-    public boolean validate() {
-        return !main.getInventory().contains("Pot") &&
-                !main.getInventory().contains("Pot of Flour");
+    public int priority() {
+        return 6;
     }
 
     @Override
-    public void execute() {
+    public boolean validate() {
+        return !getItems() && isBucket() && !isPot() && !isEgg() && !isMilk() && !isGrain() && !isFlour();
+    }
+
+    @Override
+    public int execute() {
         main.setStateClient("Getting pot");
         Area area = AreaProvider.CooksAssistant.cookArea;
+        if (main.getInventory().contains("Pot")) {
+            setPot(true);
+            return (int) Calculations.nextGaussianRandom(400, 200);
+
+        }
         if (!area.contains(main.getLocalPlayer())) {
             main.getWalking().walk(area.getRandomTile());
         } else {
@@ -33,6 +42,6 @@ public class GetPotNode extends Node {
                 MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 4000));
             }
         }
-
+        return (int) Calculations.nextGaussianRandom(400, 200);
     }
 }
