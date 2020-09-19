@@ -1,27 +1,28 @@
 package com.krugan.quests.cooksassistant;
 
 import com.krugan.quester.Main;
+import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
-import com.krugan.util.Node;
-import com.krugan.util.Utility;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.MethodProvider;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.wrappers.items.GroundItem;
 
-public class GetPotNode extends CookAssistant {
-    public GetPotNode(Main main, Utility utility) {
-        super(main, utility);
+import static org.dreambot.api.methods.MethodProvider.log;
+
+public class GetPotNode extends AdvancedTask {
+    public GetPotNode(Main main) {
+        super(main);
     }
 
     @Override
-    public int priority() {
-        return 6;
+    public boolean isFinished() {
+        return main.getInventory().contains("Pot");
     }
 
     @Override
-    public boolean validate() {
-        return !getItems() && isBucket() && !isPot() && !isEgg() && !isMilk() && !isGrain() && !isFlour();
+    public void onFinish() {
+        log("Quest task complete: GetPot");
     }
 
     @Override
@@ -29,8 +30,8 @@ public class GetPotNode extends CookAssistant {
         main.setStateClient("Getting pot");
         Area area = AreaProvider.CooksAssistant.cookArea;
         if (main.getInventory().contains("Pot")) {
-            setPot(true);
-            return (int) Calculations.nextGaussianRandom(400, 200);
+
+            return Calculations.random(3000, 6000);
 
         }
         if (!area.contains(main.getLocalPlayer())) {
@@ -42,6 +43,7 @@ public class GetPotNode extends CookAssistant {
                 MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 4000));
             }
         }
-        return (int) Calculations.nextGaussianRandom(400, 200);
+        return Calculations.random(3000, 6000);
     }
+
 }

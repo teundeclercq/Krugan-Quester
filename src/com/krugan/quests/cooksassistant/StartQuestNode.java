@@ -1,9 +1,8 @@
 package com.krugan.quests.cooksassistant;
 
 import com.krugan.quester.Main;
+import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
-import com.krugan.util.Node;
-import com.krugan.util.Utility;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.MethodProvider;
 import org.dreambot.api.methods.dialogues.Dialogues;
@@ -12,14 +11,21 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.wrappers.interactive.NPC;
 
-public class StartQuestNode extends CookAssistant {
-    public StartQuestNode(Main main, Utility utility) {
-        super(main, utility);
+import static org.dreambot.api.methods.MethodProvider.log;
+
+public class StartQuestNode extends AdvancedTask {
+    public StartQuestNode(Main main) {
+        super(main);
     }
 
     @Override
-    public boolean validate() {
-        return main.getPlayerSettings().getConfig(FreeQuest.COOKS_ASSISTANT.getConfigID()) == 0;
+    public boolean isFinished() {
+        return main.getPlayerSettings().getConfig(FreeQuest.COOKS_ASSISTANT.getConfigID()) > 0;
+    }
+
+    @Override
+    public void onFinish() {
+        log("Quest task complete: start quest");
     }
 
     @Override
@@ -32,8 +38,7 @@ public class StartQuestNode extends CookAssistant {
         } else {
             TalkToCook(main.getNpcs(), main.getDialogues());
         }
-        return (int) Calculations.nextGaussianRandom(400, 200);
-
+        return Calculations.random(1000, 4000);
     }
 
     public void TalkToCook(NPCs npcs, Dialogues dialogues) {

@@ -1,44 +1,46 @@
 package com.krugan.quests.cooksassistant;
 
 import com.krugan.quester.Main;
+import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
-import com.krugan.util.Node;
-import com.krugan.util.Utility;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.MethodProvider;
 import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
-import org.dreambot.api.methods.tabs.Tab;
 import org.dreambot.api.wrappers.interactive.NPC;
 
-import static org.dreambot.api.methods.MethodProvider.log;
+import static org.dreambot.api.methods.MethodProvider.*;
 
-public class EndQuestNode extends CookAssistant {
-    public EndQuestNode(Main main, Utility utility) {
-        super(main, utility);
+public class EndQuestNode extends AdvancedTask {
+    public EndQuestNode(Main main) {
+        super(main);
     }
 
     @Override
-    public boolean validate() {
-        return getItems();
+    public boolean isFinished() {
+        return main.getPlayerSettings().getConfig(FreeQuest.COOKS_ASSISTANT.getConfigID()) >= 2;
+    }
+
+    @Override
+    public void onFinish() {
+        log("Done with Cook's Assistant");
     }
 
     @Override
     public int execute() {
-        main.setStateClient("Ending quest");
         Area area = AreaProvider.CooksAssistant.cookArea;
         if (!area.contains(main.getLocalPlayer())) {
             main.getWalking().walk(area.getRandomTile());
-            MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
+            sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
         } else {
             TalkToCook(main.getNpcs(), main.getDialogues());
             if (main.getQuests().isFinished(FreeQuest.COOKS_ASSISTANT)) {
                 main.stop();
             }
         }
-        return (int) Calculations.nextGaussianRandom(400, 200);
+        return Calculations.random(1000, 2000);
     }
 
     public void TalkToCook(NPCs npcs, Dialogues dialogues) {

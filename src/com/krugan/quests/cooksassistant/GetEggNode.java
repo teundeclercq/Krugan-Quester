@@ -1,39 +1,38 @@
 package com.krugan.quests.cooksassistant;
 
 import com.krugan.quester.Main;
+import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
-import com.krugan.util.Node;
 import com.krugan.util.Utility;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.MethodProvider;
 
-public class GetEggNode extends CookAssistant {
-    public GetEggNode(Main main, Utility utility) {
-        super(main, utility);
+import static org.dreambot.api.methods.MethodProvider.log;
+
+public class GetEggNode extends AdvancedTask {
+    public GetEggNode(Main main) {
+        super(main);
     }
 
     @Override
-    public int priority() {
-        return 5;
+    public boolean isFinished() {
+        return main.getInventory().contains("Egg");
     }
 
     @Override
-    public boolean validate() {
-        return !getItems() && isPot() && !isGrain() && !isFlour() && !isEgg() && isBucket() &&
-                !isMilk();
+    public void onFinish() {
+        log("Quest task complete: GetEgg");
     }
 
     @Override
     public int execute() {
         main.setStateClient("Getting Egg");
         if (main.getInventory().contains("Egg")) {
-            setEgg(true);
-            return (int) Calculations.nextGaussianRandom(400, 200);
-
+            return Calculations.random(3000, 6000);
         }
         Utility.TravelTo(AreaProvider.CooksAssistant.chickenArea);
         Utility.GetGroundItemIfNeeded("Egg");
         MethodProvider.sleepUntil(()-> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 4000));
-        return (int) Calculations.nextGaussianRandom(400, 200);
+        return Calculations.random(3000, 6000);
     }
 }
