@@ -3,6 +3,8 @@ package com.krugan.quester;
 import com.krugan.gui.QuestGUI;
 import com.krugan.util.Task;
 import org.dreambot.api.methods.Calculations;
+import org.dreambot.api.methods.quest.book.FreeQuest;
+import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
@@ -42,6 +44,10 @@ public class Main extends AbstractScript {
            if (isRunning) {
                if (this.tasks.isEmpty()) {
                    log("No more available tasks, script has ended.");
+                   log("MM" + Arrays.toString(PaidQuest.MONKEY_MADNESS.getSettings()));
+                   log("WF" +Arrays.toString(PaidQuest.WATERFALL_QUEST.getSettings()));
+                   log("WH" +Arrays.toString(PaidQuest.WITCHS_HOUSE.getSettings()));
+
                    this.stop();
                    return Calculations.random(1000, 5000);
                } else {
@@ -52,6 +58,7 @@ public class Main extends AbstractScript {
                            if (!task.isFinished()) {
                                return task.execute();
                            }
+                           task.onFinish();
                            iterator.remove();
                        }
                    } catch (Exception e) {

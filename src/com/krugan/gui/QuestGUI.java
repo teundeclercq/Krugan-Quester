@@ -7,13 +7,14 @@ import com.krugan.util.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class QuestGUI {
     private boolean isRunning;
     private JPanel mainPanel;
     private JCheckBox ironManBTWCheckBox;
     private JButton startButton;
-    private JComboBox QuestCMB;
+    private JComboBox<QuestType> QuestCMB;
     private List<Task> questNodes;
 
 
@@ -23,15 +24,16 @@ public class QuestGUI {
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         QuestCMB.setModel(new DefaultComboBoxModel<>(QuestType.values()));
         QuestCMB.addActionListener(l -> {
-            questNodes = QuestFactory.createQuest((QuestType) QuestCMB.getSelectedItem(), main);
+            questNodes = QuestFactory.createQuest((QuestType) Objects.requireNonNull(QuestCMB.getSelectedItem()), main);
         });
+
+        frame.pack();
+        frame.setVisible(true);
+
         startButton.addActionListener(l -> {
             main.addTasks(questNodes);
             main.setRunning(true);
             frame.dispose();
         });
-
-        frame.pack();
-        frame.setVisible(true);
     }
 }

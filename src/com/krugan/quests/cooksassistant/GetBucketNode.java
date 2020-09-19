@@ -21,6 +21,10 @@ public class GetBucketNode extends AdvancedTask {
     @Override
     public int execute() {
         main.setStateClient("Getting bucket");
+        if (main.getInventory().contains("Bucket")) {
+            return Calculations.random(200, 400);
+
+        }
         Area basement = AreaProvider.CooksAssistant.basementArea;
         Area cookArea = AreaProvider.CooksAssistant.cookArea;
         if (!cookArea.contains(main.getLocalPlayer())) {
@@ -41,14 +45,16 @@ public class GetBucketNode extends AdvancedTask {
                 bucket.interact("Take");
             }
             sleepUntil(() -> main.getLocalPlayer().isStandingStill() && main.getInventory().contains("Bucket"), Calculations.random(3000, 4000));
-        }
-        if (main.getInventory().contains("Bucket")) {
-            GameObject trap = main.getGameObjects().closest("Ladder");
-            if (trap != null) {
-                trap.interact("Climb-up");
+
+            if (main.getInventory().contains("Bucket")) {
+                GameObject trap = main.getGameObjects().closest("Ladder");
+                if (trap != null) {
+                    trap.interact("Climb-up");
+                }
+                sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
             }
-            sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
         }
+
         return Calculations.random(3000, 4000);
     }
 

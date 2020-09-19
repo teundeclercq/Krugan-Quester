@@ -6,6 +6,7 @@ import com.krugan.util.AreaProvider;
 import com.krugan.util.Utility;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.MethodProvider;
+import org.dreambot.api.wrappers.items.GroundItem;
 
 import static org.dreambot.api.methods.MethodProvider.log;
 
@@ -30,9 +31,17 @@ public class GetEggNode extends AdvancedTask {
         if (main.getInventory().contains("Egg")) {
             return Calculations.random(3000, 6000);
         }
-        Utility.TravelTo(AreaProvider.CooksAssistant.chickenArea);
-        Utility.GetGroundItemIfNeeded("Egg");
+        GroundItem item = main.getGroundItems().closest("Egg");
+        if (!AreaProvider.CooksAssistant.chickenArea.contains(main.getLocalPlayer())) {
+            main.getWalking().walk(AreaProvider.CooksAssistant.chickenArea.getRandomTile());
+        } else {
+            if (item != null) {
+                item.interact("Take");
+                return Calculations.random(1500, 2500);
+            }
+            return Calculations.random(1250, 1500);
+        }
         MethodProvider.sleepUntil(()-> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 4000));
-        return Calculations.random(3000, 6000);
+        return Calculations.random(1100, 2350);
     }
 }

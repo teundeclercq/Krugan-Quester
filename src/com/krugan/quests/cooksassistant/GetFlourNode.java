@@ -21,7 +21,7 @@ public class GetFlourNode extends AdvancedTask {
 
     @Override
     public boolean isFinished() {
-        return main.getInventory().contains("Bucket of flour");
+        return main.getInventory().contains("Pot of flour");
     }
 
     @Override
@@ -48,28 +48,36 @@ public class GetFlourNode extends AdvancedTask {
         GameObject largeDoor = main.getGameObjects().closest("Large door");
         if (largeDoor.hasAction("Open")) {
             largeDoor.interact("Open");
-            sleep(Calculations.random(1000, 3000));
         }
 
+        sleep(Calculations.random(1000, 3000));
         // Climb stairs
-        Utility.ClimbClosest(2, true, false);
+        try {
+            ClimbClosest(2, true, false);
+        } catch (InterruptedException e) {
+            log(e.getMessage());
+        }
+        sleep(Calculations.random(1000, 3000));
 
         // Fill hopper
         GameObject hopper = main.getGameObjects().closest("Hopper");
         if (hopper != null) {
             hopper.interact("Fill");
-            sleep(Calculations.random(3000, 4000));
         }
-
+        sleep(Calculations.random(3000, 4000));
         // Operate controls
         GameObject hopperControls = main.getGameObjects().closest("Hopper controls");
         if (hopperControls != null) {
             hopperControls.interact("Operate");
-            sleep(Calculations.random(3000, 4000));
         }
+        sleep(Calculations.random(3000, 4000));
 
         // climb down
-        Utility.ClimbClosest(-2, false, false);
+        try {
+            ClimbClosest(-2, false, false);
+        } catch (InterruptedException e) {
+            log(e.getMessage());
+        }
         sleep(Calculations.random(4000, 5000));
 
         // get Flour
@@ -82,4 +90,18 @@ public class GetFlourNode extends AdvancedTask {
         return Calculations.random(3000, 6000);
     }
 
+//    public boolean ClimbClosest(int floors, boolean isUp, boolean isStairs) {
+//        int attempts = 0;
+//        int zGoal = main.getLocalPlayer().getZ() + floors;
+//        while ((main.getLocalPlayer().getZ() != zGoal) || attempts > ((floors >= 5) ? (10) : (5))) {
+//            GameObject climbable = main.getGameObjects().closest((isStairs) ? ("Stairs") : ("Ladder"));
+//            if (climbable != null) {
+//                climbable.interact((isUp) ? ("Climb-up") : ("Climb-down"));
+//                MethodProvider.log((isUp) ? "Climb-up":"Climb-down");
+//                attempts++;
+//                MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
+//            }
+//        }
+//        return true;
+//    }
 }

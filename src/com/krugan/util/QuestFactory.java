@@ -2,6 +2,7 @@ package com.krugan.util;
 
 import com.krugan.quester.Main;
 import com.krugan.quests.cooksassistant.*;
+import com.krugan.quests.restlessghost.*;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,15 @@ public class QuestFactory {
                 return cookAssistantNodes;
             case SHEEP_SHEARER:
                return null;
+            case RESTLESS_GHOST:
+                ArrayList<Task> nodes = new ArrayList<>();
+                nodes.add(new Start(ctx));
+                nodes.add(new GetGhostSpeak(ctx));
+                nodes.add(new WalkToGraveyard(ctx));
+                nodes.add(new GetSkull(ctx));
+                nodes.add(new Finish(ctx));
+                return nodes;
+
             default:
                 return null;
         }
