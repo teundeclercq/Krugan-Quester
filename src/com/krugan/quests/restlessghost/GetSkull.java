@@ -31,7 +31,7 @@ public class GetSkull extends AdvancedTask {
 
         Area area = AreaProvider.RestlessGhost.wizardTowerBasementLadder;
         Area basementLadder = AreaProvider.RestlessGhost.wizardTowerBasementLadderDownStairs;
-        Area skullarea = AreaProvider.RestlessGhost.wizardTowerBasementSkull;
+        Area skullArea = AreaProvider.RestlessGhost.wizardTowerBasementSkull;
         try {
             TravelTo(area);
         } catch (InterruptedException e) {
@@ -40,7 +40,7 @@ public class GetSkull extends AdvancedTask {
         sleep(Calculations.random(300, 400));
         ClosestSpecifiedGameObjectInteract("Ladder", "Climb-down");
         try {
-            TravelTo(skullarea);
+            TravelTo(skullArea);
         } catch (InterruptedException e) {
             log(e.getMessage());
         }
