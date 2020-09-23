@@ -9,6 +9,7 @@ import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -27,7 +28,9 @@ public class Main extends AbstractScript {
     @Override
     public void onStart() {
         log("Starting the GUI");
-        QuestGUI gui = new QuestGUI(this);
+        SwingUtilities.invokeLater(() -> {
+            QuestGUI gui = new QuestGUI(this);
+        });
     }
 
     @Override
@@ -44,11 +47,7 @@ public class Main extends AbstractScript {
            if (isRunning) {
                if (this.tasks.isEmpty()) {
                    log("No more available tasks, script has ended.");
-                   log("MM" + Arrays.toString(PaidQuest.MONKEY_MADNESS.getSettings()));
-                   log("WF" +Arrays.toString(PaidQuest.WATERFALL_QUEST.getSettings()));
-                   log("WH" +Arrays.toString(PaidQuest.WITCHS_HOUSE.getSettings()));
-
-                   this.stop();
+                   stop();
                    return Calculations.random(1000, 5000);
                } else {
                    try {

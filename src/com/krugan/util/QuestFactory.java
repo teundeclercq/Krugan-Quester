@@ -2,6 +2,8 @@ package com.krugan.util;
 
 import com.krugan.quester.Main;
 import com.krugan.quests.cooksassistant.*;
+import com.krugan.quests.impcatcher.ImpCatcherStart;
+import com.krugan.quests.impcatcher.KillingImps;
 import com.krugan.quests.restlessghost.*;
 
 import java.util.ArrayList;
@@ -23,14 +25,19 @@ public class QuestFactory {
             case SHEEP_SHEARER:
                return null;
             case RESTLESS_GHOST:
-                ArrayList<Task> nodes = new ArrayList<>();
-                nodes.add(new Start(ctx));
-                nodes.add(new GetGhostSpeak(ctx));
-                nodes.add(new WalkToGraveyard(ctx));
-                nodes.add(new GetSkull(ctx));
-                nodes.add(new Finish(ctx));
-                return nodes;
-
+                ArrayList<Task> restlessGhostNodes = new ArrayList<>();
+                restlessGhostNodes.add(new Start(ctx));
+                restlessGhostNodes.add(new GetGhostSpeak(ctx));
+                restlessGhostNodes.add(new WalkToGraveyard(ctx));
+                restlessGhostNodes.add(new GetSkull(ctx));
+                restlessGhostNodes.add(new Finish(ctx));
+                return restlessGhostNodes;
+            case IMP_CATCHER:
+                ArrayList<Task> impCatcherNodes = new ArrayList<>();
+                impCatcherNodes.add(new KillingImps(ctx));
+                impCatcherNodes.add(new ImpCatcherStart(ctx));
+                impCatcherNodes.add(new QuestEnd(ctx));
+                return impCatcherNodes;
             default:
                 return null;
         }

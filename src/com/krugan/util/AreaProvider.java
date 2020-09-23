@@ -20,4 +20,29 @@ public class AreaProvider {
         public final static Area wizardTowerBasementLadder = new Area(3106, 3159, 3103, 3161);
         public final static Area wizardTowerBasementSkull = new Area(3114, 9569, 3121, 9564);;
     }
+    public static class ImpCatcher {
+        public final static Area impKillingArea = new Area(
+                new Tile(3036, 3314, 0),
+                new Tile(3036, 3328, 0),
+                new Tile(3025, 3328, 0),
+                new Tile(3020, 3325, 0),
+                new Tile(3017, 3325, 0),
+                new Tile(3014, 3325, 0),
+                new Tile(3012, 3322, 0),
+                new Tile(3008, 3322, 0),
+                new Tile(3003, 3322, 0),
+                new Tile(2999, 3319, 0),
+                new Tile(2998, 3313, 0),
+                new Tile(2995, 3303, 0),
+                new Tile(2991, 3294, 0),
+                new Tile(3001, 3293, 0),
+                new Tile(3011, 3293, 0),
+                new Tile(3012, 3308, 0),
+                new Tile(3013, 3310, 0),
+                new Tile(3014, 3312, 0),
+                new Tile(3018, 3312, 0),
+                new Tile(3020, 3312, 0),
+                new Tile(3023, 3314, 0));
+        public final static Area startQuest = new Area(3102, 3165, 3105, 3162, 2);
+    }
 }
