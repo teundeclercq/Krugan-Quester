@@ -39,11 +39,7 @@ public class EndWitchPotion extends AdvancedTask {
     public int execute() {
         main.setStateClient("Ending witch potion.");
         Area area = AreaProvider.WitchPotion.hetty;
-        try {
             TravelTo(area);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         NPC hetty = NPCs.closest("Hetty");
         sleep(Calculations.random(500, 750));
         if (hetty != null) {

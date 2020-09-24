@@ -38,11 +38,7 @@ public class GetMeat extends AdvancedTask {
         main.setStateClient("Getting the meat.");
 
         Area area = AreaProvider.WitchPotion.cowArea;
-        try {
             TravelTo(area);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         KillNpcAndPickUpItem("Cow", area, "Raw beef");
         return Calculations.random(1500,2250);
     }

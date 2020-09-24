@@ -55,6 +55,7 @@ public class QuestFactory {
             case ERNEST_THE_CHICKEN:
                 ArrayList<Task> ernestTheChickenNodes = new ArrayList<>();
                 ernestTheChickenNodes.add(new GetOil(ctx));
+                return ernestTheChickenNodes;
             default:
                 return null;
         }

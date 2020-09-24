@@ -45,11 +45,7 @@ public class Finish extends AdvancedTask {
 //        sleep(Calculations.random(300, 400));
 
         Area area = AreaProvider.RestlessGhost.ghostGraveYard;
-        try {
             TravelTo(area);
-        } catch (InterruptedException e) {
-            log(e.getMessage());
-        }
         sleep(Calculations.random(300, 400));
         ClosestSpecifiedGameObjectInteract("Coffin", "Open");
         NPC ghost = main.getNpcs().closest("Restless Ghost");

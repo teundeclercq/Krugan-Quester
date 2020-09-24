@@ -33,11 +33,7 @@ public class GetGhostSpeak extends AdvancedTask {
     public int execute() {
         main.setStateClient("Getting the ghostspeak amulet");
         Area area = AreaProvider.RestlessGhost.fatherUrayArea;
-        try {
             TravelTo(area);
-        } catch (InterruptedException e) {
-            log(e.getMessage());
-        }
         sleep(Calculations.random(300, 400));
         NPC father = main.getNpcs().closest("Father Urhney");
         Integer[] options = new Integer[] {2,1};

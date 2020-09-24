@@ -48,8 +48,6 @@ public class Main extends AbstractScript {
            if (isRunning) {
                if (this.tasks.isEmpty()) {
                    log("No more available tasks, script has ended.");
-                   log(PlayerSettings.getConfig(FreeQuest.WITCHS_POTION.getConfigID()));
-//                   PlayerSettings.getConfig()
                    stop();
                    return Calculations.random(1000, 5000);
                } else {

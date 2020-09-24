@@ -26,11 +26,7 @@ public class GetRatTail extends AdvancedTask {
     public int execute() {
         main.setStateClient("Getting the rat tail.");
         Area ratArea = AreaProvider.WitchPotion.ratArea;
-        try {
             TravelTo(ratArea);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         KillNpcAndPickUpItem("Rat", ratArea, "Rat's tail");
         return Calculations.random(2500, 3000);
     }

@@ -32,30 +32,18 @@ public class GetSkull extends AdvancedTask {
         Area area = AreaProvider.RestlessGhost.wizardTowerBasementLadder;
         Area basementLadder = AreaProvider.RestlessGhost.wizardTowerBasementLadderDownStairs;
         Area skullArea = AreaProvider.RestlessGhost.wizardTowerBasementSkull;
-        try {
             TravelTo(area);
-        } catch (InterruptedException e) {
-            log(e.getMessage());
-        }
         sleep(Calculations.random(300, 400));
         ClosestSpecifiedGameObjectInteract("Ladder", "Climb-down");
-        try {
             TravelTo(skullArea);
-        } catch (InterruptedException e) {
-            log(e.getMessage());
-        }
         sleep(Calculations.random(300, 400));
         ClosestSpecifiedGameObjectInteract("Altar", "Search");
         if (main.getDialogues().inDialogue() || main.getDialogues().canContinue()) {
             main.getDialogues().spaceToContinue();
             sleep(Calculations.random(200,300));
         }
-        try {
             main.getWalking().toggleRun();
             TravelTo(basementLadder);
-        } catch (InterruptedException e) {
-            log(e.getMessage());
-        }
         sleep(Calculations.random(300, 400));
         ClosestSpecifiedGameObjectInteract("Ladder", "Climb-up");
         sleep(Calculations.random(300, 400));

@@ -33,11 +33,7 @@ public class GetOnion extends AdvancedTask {
         main.setStateClient("Getting the onion.");
 
         Area area = AreaProvider.WitchPotion.onionField;
-        try {
             TravelTo(area);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         GameObject onion = GameObjects.closest(_onion -> _onion.getName().equals("Onion") && _onion.isOnScreen() && Map.canReach(_onion));
 
         if (onion != null) {

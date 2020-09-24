@@ -1,7 +1,9 @@
 package com.krugan.util;
 
+import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.wrappers.interactive.GameObject;
 
 public class AreaProvider {
     public static class CooksAssistant {
@@ -65,12 +67,12 @@ public class AreaProvider {
         public final static Area avasRoom = new Area(3092, 3361, 3096, 3355);
         public final static Area bookCaseRoom = new Area(3097, 3362, 3101, 3355);
         public final static Area cellarTrap = new Area(3114, 9756, 3118, 9750);
-        public final static Area leverA = new Area(3105, 9747, 3110, 9745);
-        public final static Area leverB = new Area(3118, 9750, 3115, 9754);
-        public final static Area leverC = new Area(3112, 9758, 3110, 9761);
-        public final static Area leverD = new Area(3110, 9766, 3105, 9767);
-        public final static Area leverE = new Area(3099, 9767, 3096, 9767);
-        public final static Area leverF = new Area(3096, 9767, 3096, 9763);
+        public final static GameObject leverA = GameObjects.closest("Lever A");
+        public final static GameObject leverB = GameObjects.closest("Lever B");
+        public final static GameObject leverC = GameObjects.closest("Lever C");
+        public final static GameObject leverD = GameObjects.closest("Lever D");
+        public final static GameObject leverE = GameObjects.closest("Lever E");
+        public final static GameObject leverF = GameObjects.closest("Lever F");
         public final static Area oilCan = new Area(3090, 9757, 3097, 9753);
         public final static Area door1 = new Area(3108, 9756, 3108, 9759);
         public final static Area door2 = new Area(3105, 9760, 3104, 9760);
@@ -81,6 +83,51 @@ public class AreaProvider {
         public final static Area door7 = new Area(3104, 9765, 3105, 9765);
         public final static Area door8 = new Area(3102, 9763, 3102, 9762);
         public final static Area door9 = new Area(3100, 9755, 3099, 9755);
+
+        public final static Area area1 = new Area(3108, 9756, 3108, 9756);
+        public final static Area area2 = new Area(3108, 9759, 3108, 9759);
+
+        public final static Area area3 = new Area(3102, 9756, 3102, 9756);
+
+        public final static Area area4 = new Area(3102, 9759, 3102, 9759);
+
+        public final static Area area5 = new Area(3101, 9760, 3101, 9760);
+
+        public final static Area area6 = new Area(3098, 9760, 3098, 9760);
+
+        public final static Area area7 = new Area(3097, 9761, 3097, 9761);
+
+        public final static Area area8 = new Area(3091, 9756, 3096, 9754);
+
+        public final static Tile tile1 = new Tile(3108, 9756, 0);
+
+        public final static Tile tile2 =new Tile(3108, 9759, 0);
+
+        public final static Tile tile3 =new Tile(3102, 9756, 0);
+
+        public final static Tile tile4 =new Tile(3102, 9759, 0);
+
+        public final static Tile tile5 =new Tile(3101, 9760, 0);
+
+        public final static Tile tile6 =new Tile(3098, 9760, 0);
+
+        public final static Tile tile7 =new Tile(3097, 9761, 0);
+
+        public final static Tile tile8 =new Tile(3097, 9764, 0);
+
+        public final static Tile tile9 =new Tile(3098, 9765, 0);
+
+        public final static Tile tile10 =new Tile(3101, 9765, 0);
+
+        public final static Tile tile11 =new Tile(3103, 9765, 0);
+
+        public final static Tile tile12 = new Tile(3106, 9765, 0);
+
+        public final static Tile tile13 =new Tile(3102, 9764, 0);
+
+        public final static Tile tile14 = new Tile(3102, 9761, 0);
+
+        public final static Tile tile15 = new Tile(3101, 9755, 0);
     }
 
 }

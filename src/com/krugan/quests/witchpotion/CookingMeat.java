@@ -32,11 +32,7 @@ public class CookingMeat extends AdvancedTask {
     public int execute() {
         main.setStateClient("Cooking until burnt meat");
         Area cookArea = AreaProvider.WitchPotion.cookArea;
-        try {
             TravelTo(cookArea);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         Item rawMeat = Inventory.get("Raw beef");
         Item cookedMeat = Inventory.get("Cooked meat");
         GameObject stove = GameObjects.closest(range -> range.isOnScreen() && range.getName().equals("Range"));

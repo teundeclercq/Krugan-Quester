@@ -28,11 +28,7 @@ public class GetPoison extends AdvancedTask {
     @Override
     public int execute() {
         Area area = AreaProvider.ErnestTheChick.poisonArea;
-        try {
             TravelTo(area);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         GetGroundItemIfNeeded("Poison");
 

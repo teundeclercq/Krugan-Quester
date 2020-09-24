@@ -36,11 +36,7 @@ public class StartWitchPotion extends AdvancedTask {
         main.setStateClient("starting witch potion.");
 
         Area hettyArea = AreaProvider.WitchPotion.hetty;
-        try {
             TravelTo(hettyArea);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         NPC hetty = NPCs.closest("Hetty");
         TalkToNpc(hetty, "Talk-to", 1);
 

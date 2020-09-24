@@ -32,11 +32,7 @@ public class WalkToGraveyard extends AdvancedTask {
         main.setStateClient("Walking to graveyard.");
 
         Area area = AreaProvider.RestlessGhost.ghostGraveYard;
-        try {
             TravelTo(area);
-        } catch (InterruptedException e) {
-            log(e.getMessage());
-        }
         sleep(Calculations.random(300, 400));
         //todo if coffin is open use option search else use option Open.
         ClosestSpecifiedGameObjectInteract("Coffin", "Open");

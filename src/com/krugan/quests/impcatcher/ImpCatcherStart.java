@@ -30,11 +30,7 @@ public class ImpCatcherStart extends AdvancedTask {
     @Override
     public int execute() {
         main.setStateClient("Starting quest");
-        try {
             TravelTo(AreaProvider.ImpCatcher.startQuest);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         NPC wizardMizgog = NPCs.closest("Wizard Mizgog");
         if (wizardMizgog != null) {
             TalkToNpc(wizardMizgog, "Talk-to", 1);

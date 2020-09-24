@@ -30,11 +30,7 @@ public class GoToCellar extends AdvancedTask {
     public int execute() {
         // Walk to the bookcase
         Area bookCase = AreaProvider.ErnestTheChick.bookCaseRoom;
-        try {
             TravelTo(bookCase);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         // use bookcase
         ClosestSpecifiedGameObjectInteract("Bookcase", "Search");
         sleep(Calculations.random(5000,10000));

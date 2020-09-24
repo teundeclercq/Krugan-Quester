@@ -11,6 +11,7 @@ import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Map;
+import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.interactive.NPC;
@@ -41,9 +42,17 @@ public abstract class AdvancedTask implements Task {
         }
     }
 
+    public void TravelToTile(Tile tile) {
+        if (!main.getLocalPlayer().getTile().equals(tile)) {
+            Walking.walk(tile);
+            sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
+        }
+    }
+
+
     public void TravelTo(Area destination) {
         if (!destination.contains(main.getLocalPlayer()) && !destination.contains(Walking.getDestination())) {
-            Walking.walk(destination.getRandomTile());
+            Walking.clickTileOnMinimap(destination.getRandomTile());
             MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
         }
     }
@@ -53,6 +62,15 @@ public abstract class AdvancedTask implements Task {
             MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
         }
     }
+
+    public void TravelToGameObject(GameObject obj) {
+        if (obj.exists()) {
+            Walking.walk(obj.getTile());
+            MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 3600));
+        }
+    }
+
+
 
 
 
@@ -93,6 +111,8 @@ public abstract class AdvancedTask implements Task {
     public boolean ClosestSpecifiedGameObjectInteract(String gameObjectName, String interactOption) {
         GameObject closestSpecifiedGameObject = GameObjects.closest(gameObjectName);
         if (closestSpecifiedGameObject != null) {
+            Camera.mouseRotateToEntity(closestSpecifiedGameObject);
+            sleep(Calculations.random(400,600));
             closestSpecifiedGameObject.interact(interactOption);
             MethodProvider.sleep(Calculations.random(2000, 3000));
             return true;

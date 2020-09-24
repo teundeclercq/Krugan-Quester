@@ -39,11 +39,7 @@ public class GetEyeOfNewt extends AdvancedTask {
         Area bankArea = AreaProvider.WitchPotion.draynorBank;
 
         if (!Inventory.contains(coins -> coins.getName().equals("Coins") && coins.getAmount() >= 3)) {
-            try {
                 TravelTo(bankArea);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             GameObject bankBooth = GameObjects.closest(bb -> bb != null && bb.getName().equals("Bank booth"));
             bankBooth.interact("Bank");
             sleepUntil(Bank::isOpen, Calculations.random(3000, 4000));
@@ -58,11 +54,7 @@ public class GetEyeOfNewt extends AdvancedTask {
         }
 
 
-        try {
             TravelTo(area);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         NPC betty = NPCs.closest("Betty");
 

@@ -30,11 +30,7 @@ public class StartErnest extends AdvancedTask {
     @Override
     public int execute() {
         Area area = AreaProvider.ErnestTheChick.veronicaArea;
-        try {
             TravelTo(area);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         NPC veronica = NPCs.closest("Veronica");
         TalkToNpc(veronica, "Talk-to", 1);
         return Calculations.random(2500, 3000);
