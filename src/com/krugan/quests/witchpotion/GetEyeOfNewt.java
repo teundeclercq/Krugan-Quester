@@ -33,26 +33,30 @@ public class GetEyeOfNewt extends AdvancedTask {
 
     @Override
     public int execute() {
+        main.setStateClient("Getting eye of newt.");
+
         Area area = AreaProvider.WitchPotion.eyeofNewtShop;
         Area bankArea = AreaProvider.WitchPotion.draynorBank;
 
-        try {
-            TravelTo(bankArea);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        GameObject bankBooth = GameObjects.closest(bb -> bb != null && bb.getName().equals("Bank booth"));
-        bankBooth.interact("Bank");
-        sleepUntil(Bank::isOpen, Calculations.random(3000, 4000));
-
-        if (Bank.isOpen()) {
-            if (!Inventory.contains("Coins")) {
-                Bank.withdraw("Coins", 3);
-                sleepUntil(() -> !Inventory.contains("Coins"), Calculations.random(3000, 6000));
+        if (!Inventory.contains(coins -> coins.getName().equals("Coins") && coins.getAmount() >= 3)) {
+            try {
+                TravelTo(bankArea);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            Bank.close();
+            GameObject bankBooth = GameObjects.closest(bb -> bb != null && bb.getName().equals("Bank booth"));
+            bankBooth.interact("Bank");
+            sleepUntil(Bank::isOpen, Calculations.random(3000, 4000));
+
+            if (Bank.isOpen()) {
+                if (!Inventory.contains("Coins")) {
+                    Bank.withdraw("Coins", 3);
+                    sleepUntil(() -> !Inventory.contains("Coins"), Calculations.random(3000, 6000));
+                }
+                Bank.close();
+            }
         }
+
 
         try {
             TravelTo(area);

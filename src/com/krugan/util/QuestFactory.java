@@ -5,6 +5,7 @@ import com.krugan.quests.cooksassistant.*;
 import com.krugan.quests.impcatcher.ImpCatcherStart;
 import com.krugan.quests.impcatcher.KillingImps;
 import com.krugan.quests.restlessghost.*;
+import com.krugan.quests.witchpotion.*;
 
 import java.awt.geom.Area;
 import java.util.ArrayList;
@@ -41,6 +42,14 @@ public class QuestFactory {
                 return impCatcherNodes;
             case WITCH_POTION:
                 ArrayList<Task> witchPotionNodes = new ArrayList<>();
+                witchPotionNodes.add(new GetEyeOfNewt(ctx));
+                witchPotionNodes.add(new GetMeat(ctx));
+                witchPotionNodes.add(new GetOnion(ctx));
+                witchPotionNodes.add(new CookingMeat(ctx));
+                witchPotionNodes.add(new StartWitchPotion(ctx));
+                witchPotionNodes.add(new GetRatTail(ctx));
+                witchPotionNodes.add(new EndWitchPotion(ctx));
+                witchPotionNodes.add(new QuestEnd(ctx));
                 return witchPotionNodes;
             default:
                 return null;

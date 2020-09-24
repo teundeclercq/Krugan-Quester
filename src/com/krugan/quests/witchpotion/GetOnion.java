@@ -7,6 +7,7 @@ import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.map.Map;
 import org.dreambot.api.wrappers.interactive.GameObject;
 
 import static org.dreambot.api.methods.MethodProvider.log;
@@ -29,13 +30,15 @@ public class GetOnion extends AdvancedTask {
 
     @Override
     public int execute() {
+        main.setStateClient("Getting the onion.");
+
         Area area = AreaProvider.WitchPotion.onionField;
         try {
             TravelTo(area);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        GameObject onion = GameObjects.closest("Onion");
+        GameObject onion = GameObjects.closest(_onion -> _onion.getName().equals("Onion") && _onion.isOnScreen() && Map.canReach(_onion));
 
         if (onion != null) {
             onion.interact("Pick");

@@ -24,6 +24,7 @@ public class GetRatTail extends AdvancedTask {
 
     @Override
     public int execute() {
+        main.setStateClient("Getting the rat tail.");
         Area ratArea = AreaProvider.WitchPotion.ratArea;
         try {
             TravelTo(ratArea);

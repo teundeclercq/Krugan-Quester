@@ -23,8 +23,7 @@ public class QuestEnd extends AdvancedTask {
 
     @Override
     public boolean isFinished() {
-        widget = Widgets.getWidgetChild(widgetParent, widgetChild);
-        return widget == null;
+        return widget != null;
     }
 
     @Override
@@ -34,8 +33,9 @@ public class QuestEnd extends AdvancedTask {
 
     @Override
     public int execute() {
+        widget = Widgets.getWidgetChild(widgetParent, widgetChild);
+        sleep(Calculations.random(2000, 4000));
         if (widget != null) {
-            log(widget);
             widget.interact("Close");
             sleep(Calculations.random(1000, 2000));
             if (Dialogues.inDialogue()) {

@@ -63,10 +63,13 @@ public abstract class AdvancedTask implements Task {
             Dialogues.spaceToContinue();
             sleep(Calculations.random(2000, 2500));
         }
-        if (Dialogues.getOptions().length > 0) {
-            Dialogues.chooseOption(option);
-            sleep(Calculations.random(1750, 3250));
+        if (option != 0) {
+            if (Dialogues.getOptions().length > 0) {
+                Dialogues.chooseOption(option);
+                sleep(Calculations.random(1750, 3250));
+            }
         }
+
     }
 
     public boolean ClosestSpecifiedGameObjectInteract(String gameObjectName, String interactOption) {
@@ -82,17 +85,17 @@ public abstract class AdvancedTask implements Task {
 
     public int KillNpcAndPickUpItem(String npcToKill, Area areaToKillNpc, String... itemToPickUp) {
 
-        NPC _npcToKill = NPCs.closest(npc  -> npc.getName().equals(npcToKill) && !npc.isInCombat() && Map.canReach(npc));
+        NPC _npcToKill = NPCs.closest(npc  -> npc.getName().equals(npcToKill) && !npc.isInCombat() && npc.isOnScreen() && Map.canReach(npc));
 
         GroundItem groundItem = GroundItems.closest(itemToPickUp);
-
+        if (!Inventory.contains(itemToPickUp)) {
             if (groundItem != null) {
                 Walking.walk(groundItem);
-                sleep( Calculations.random(500, 1500));
+                sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(5000, 8000));
                 groundItem.interact("Take");
-                sleepUntil(() -> Inventory.contains(groundItem), Calculations.random(2500, 3000));
+                sleepUntil(() -> Inventory.contains(groundItem) && main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 3000));
             }
-
+        }
         if (_npcToKill != null) {
             if (!main.getLocalPlayer().isInCombat() && main.getLocalPlayer().getInteractingCharacter() == null) {
                 Walking.walk(_npcToKill);

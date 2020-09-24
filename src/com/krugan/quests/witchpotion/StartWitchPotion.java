@@ -33,28 +33,17 @@ public class StartWitchPotion extends AdvancedTask {
 
     @Override
     public int execute() {
-        NPC hetty = NPCs.closest("Hetty");
-        TalkToNpc(hetty, "Talk-to", 1);
-        Area cookArea = AreaProvider.WitchPotion.cookArea;
+        main.setStateClient("starting witch potion.");
+
+        Area hettyArea = AreaProvider.WitchPotion.hetty;
         try {
-            TravelTo(cookArea);
+            TravelTo(hettyArea);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Item rawMeat = Inventory.get("Raw meat");
-        Item cookedMeat = Inventory.get("Cooked meat");
-        GameObject stove = GameObjects.closest("Range");
-        if (stove != null) {
-            if (rawMeat != null) {
-                rawMeat.useOn(stove);
-                return Calculations.random(500, 1000);
-            }
+        NPC hetty = NPCs.closest("Hetty");
+        TalkToNpc(hetty, "Talk-to", 1);
 
-            if (cookedMeat != null) {
-                cookedMeat.useOn(stove);
-                return Calculations.random(500, 1000);
-            }
-        }
         return Calculations.random(500, 1000);
     }
 
