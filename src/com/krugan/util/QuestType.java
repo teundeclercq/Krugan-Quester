@@ -5,5 +5,6 @@ public enum QuestType {
     SHEEP_SHEARER,
     RESTLESS_GHOST,
     IMP_CATCHER,
-    WITCH_POTION
+    WITCH_POTION,
+    ERNEST_THE_CHICKEN,
 }

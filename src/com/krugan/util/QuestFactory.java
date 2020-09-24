@@ -2,6 +2,7 @@ package com.krugan.util;
 
 import com.krugan.quester.Main;
 import com.krugan.quests.cooksassistant.*;
+import com.krugan.quests.ernestthechicken.GetOil;
 import com.krugan.quests.impcatcher.ImpCatcherStart;
 import com.krugan.quests.impcatcher.KillingImps;
 import com.krugan.quests.restlessghost.*;
@@ -51,6 +52,9 @@ public class QuestFactory {
                 witchPotionNodes.add(new EndWitchPotion(ctx));
                 witchPotionNodes.add(new QuestEnd(ctx));
                 return witchPotionNodes;
+            case ERNEST_THE_CHICKEN:
+                ArrayList<Task> ernestTheChickenNodes = new ArrayList<>();
+                ernestTheChickenNodes.add(new GetOil(ctx));
             default:
                 return null;
         }

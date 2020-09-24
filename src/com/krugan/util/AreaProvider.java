@@ -55,5 +55,32 @@ public class AreaProvider {
         public final static Area ratArea = new Area(2965, 3208, 2970, 3203);
         public final static Area cookArea = new Area(2963, 3216, 2970, 3209);
     }
+    public static class ErnestTheChick {
+        public final static Area veronicaArea = new Area(3106, 3331, 3114, 3327);
+        public final static Area poisonArea = new Area(3097, 3365, 3098, 3364);
+        public final static Area fishFoodArea = new Area(3107, 3361, 3110, 3354, 1);
+        public final static Area ruberTubeArea = new Area(3108, 3368, 3112, 3366);
+        public final static Area spadeRoom = new Area(3120, 3360, 3126, 3354);
+        public final static Area fountainArea = new Area(3085, 3337, 3090, 3332);
+        public final static Area avasRoom = new Area(3092, 3361, 3096, 3355);
+        public final static Area bookCaseRoom = new Area(3097, 3362, 3101, 3355);
+        public final static Area cellarTrap = new Area(3114, 9756, 3118, 9750);
+        public final static Area leverA = new Area(3105, 9747, 3110, 9745);
+        public final static Area leverB = new Area(3118, 9750, 3115, 9754);
+        public final static Area leverC = new Area(3112, 9758, 3110, 9761);
+        public final static Area leverD = new Area(3110, 9766, 3105, 9767);
+        public final static Area leverE = new Area(3099, 9767, 3096, 9767);
+        public final static Area leverF = new Area(3096, 9767, 3096, 9763);
+        public final static Area oilCan = new Area(3090, 9757, 3097, 9753);
+        public final static Area door1 = new Area(3108, 9756, 3108, 9759);
+        public final static Area door2 = new Area(3105, 9760, 3104, 9760);
+        public final static Area door3 = new Area(3102, 9758, 3102, 9757);
+        public final static Area door4 = new Area(3100, 9760, 3099, 9760);
+        public final static Area door5 = new Area(3097, 9762, 3097, 9763);
+        public final static Area door6 = new Area(3099, 9765, 3100, 9765);
+        public final static Area door7 = new Area(3104, 9765, 3105, 9765);
+        public final static Area door8 = new Area(3102, 9763, 3102, 9762);
+        public final static Area door9 = new Area(3100, 9755, 3099, 9755);
+    }
 
 }

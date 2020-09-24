@@ -31,12 +31,30 @@ public abstract class AdvancedTask implements Task {
         this.main = main;
     }
 
-    public void TravelTo(Area destination) throws InterruptedException {
+    public void GetGroundItemIfNeeded(String itemToGet) {
+        while (!Inventory.contains(itemToGet)) {
+            GroundItem item = GroundItems.closest(itemToGet);
+            if (item != null) {
+                item.interact("Take");
+                MethodProvider.sleepWhile(() -> !Inventory.contains(itemToGet), Calculations.random(35000, 40000));
+            }
+        }
+    }
+
+    public void TravelTo(Area destination) {
         if (!destination.contains(main.getLocalPlayer()) && !destination.contains(Walking.getDestination())) {
             Walking.walk(destination.getRandomTile());
             MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
         }
     }
+    public void TravelToNearest(Area destination) {
+        if (!destination.contains(main.getLocalPlayer()) && !destination.contains(Walking.getDestination())) {
+            Walking.walk(destination.getNearestTile(main.getLocalPlayer()));
+            MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
+        }
+    }
+
+
 
     public boolean ClimbClosest(int floors, boolean isUp, boolean isStairs) throws InterruptedException {
         int zStart = main.getLocalPlayer().getZ();
