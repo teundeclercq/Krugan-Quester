@@ -4,7 +4,6 @@ import com.krugan.quester.Main;
 import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
 import org.dreambot.api.methods.Calculations;
-import org.dreambot.api.methods.MethodProvider;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.wrappers.interactive.NPC;
@@ -44,7 +43,7 @@ public class GetGhostSpeak extends AdvancedTask {
         Integer[] options = new Integer[] {2,1};
         if (father != null) {
             for (Integer opt: options) {
-                talkToNpc(father, "Talk-to", opt);
+                TalkToNpc(father, "Talk-to", opt);
             }
         }
         if (main.getInventory().contains("Ghostspeak amulet")) {

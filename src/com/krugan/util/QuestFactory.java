@@ -6,6 +6,7 @@ import com.krugan.quests.impcatcher.ImpCatcherStart;
 import com.krugan.quests.impcatcher.KillingImps;
 import com.krugan.quests.restlessghost.*;
 
+import java.awt.geom.Area;
 import java.util.ArrayList;
 
 public class QuestFactory {
@@ -23,7 +24,7 @@ public class QuestFactory {
                 cookAssistantNodes.add(new EndQuestNode(ctx));
                 return cookAssistantNodes;
             case SHEEP_SHEARER:
-               return null;
+                return null;
             case RESTLESS_GHOST:
                 ArrayList<Task> restlessGhostNodes = new ArrayList<>();
                 restlessGhostNodes.add(new Start(ctx));
@@ -38,6 +39,9 @@ public class QuestFactory {
                 impCatcherNodes.add(new ImpCatcherStart(ctx));
                 impCatcherNodes.add(new QuestEnd(ctx));
                 return impCatcherNodes;
+            case WITCH_POTION:
+                ArrayList<Task> witchPotionNodes = new ArrayList<>();
+                return witchPotionNodes;
             default:
                 return null;
         }

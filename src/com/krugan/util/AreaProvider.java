@@ -45,4 +45,15 @@ public class AreaProvider {
                 new Tile(3023, 3314, 0));
         public final static Area startQuest = new Area(3102, 3165, 3105, 3162, 2);
     }
+
+    public static class WitchPotion {
+        public final static Area cowArea = new Area(3022, 3312, 3041, 3298);
+        public final static Area draynorBank = new Area(3092, 3246, 3095, 3240);
+        public final static Area eyeofNewtShop = new Area(3011, 3261, 3016, 3256);
+        public final static Area onionField = new Area(2945, 3260, 2955, 3248);
+        public final static Area hetty = new Area(2965, 3208, 2970, 3203);
+        public final static Area ratArea = new Area(2965, 3208, 2970, 3203);
+        public final static Area cookArea = new Area(2963, 3216, 2970, 3209);
+    }
+
 }

@@ -43,7 +43,7 @@ public class WalkToGraveyard extends AdvancedTask {
         sleep(Calculations.random(3500, 5500));
         NPC npc = main.getNpcs().closest("Restless ghost");
         if (npc != null) {
-            talkToNpc(npc, "Talk-to", 1);
+            TalkToNpc(npc, "Talk-to", 1);
         }
         return Calculations.random(3500, 4450);
     }

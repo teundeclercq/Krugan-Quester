@@ -23,11 +23,10 @@ public class KillingImps extends AdvancedTask {
 
     @Override
     public boolean isFinished() {
-//        return Inventory.contains("Black bead") &&
-//                Inventory.contains("Yellow bead") &&
-//                Inventory.contains("White bead") &&
-//                Inventory.contains("Red bead");
-        return true;
+        return Inventory.contains("Black bead") &&
+                Inventory.contains("Yellow bead") &&
+                Inventory.contains("White bead") &&
+                Inventory.contains("Red bead");
     }
 
     @Override

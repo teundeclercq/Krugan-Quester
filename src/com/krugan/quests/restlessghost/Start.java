@@ -37,7 +37,7 @@ public class Start extends AdvancedTask {
         NPC father = main.getNpcs().closest("Father Aereck");
         Integer[] options = new Integer[] {3,1};
         for(Integer opt: options) {
-            talkToNpc(father, "Talk-to", opt);
+            TalkToNpc(father, "Talk-to", opt);
         }
         return Calculations.random(1000, 2000);
     }

@@ -3,18 +3,26 @@ package com.krugan.util;
 import com.krugan.quester.Main;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.MethodProvider;
+import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.dialogues.Dialogues;
+import org.dreambot.api.methods.input.Camera;
 import org.dreambot.api.methods.interactive.GameObjects;
+import org.dreambot.api.methods.interactive.NPCs;
+import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.map.Map;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.interactive.NPC;
+import org.dreambot.api.wrappers.items.GroundItem;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.dreambot.api.methods.MethodProvider.sleep;
+import static org.dreambot.api.methods.MethodProvider.sleepUntil;
 
 public abstract class AdvancedTask implements Task {
     protected Main main;
@@ -46,7 +54,7 @@ public abstract class AdvancedTask implements Task {
         return true;
     }
 
-    public void talkToNpc(NPC npc, String talkAction, Integer option) {
+    public void TalkToNpc(NPC npc, String talkAction, Integer option) {
         if (!Dialogues.inDialogue()) {
             npc.interact(talkAction);
             sleep(Calculations.random(1500, 2750));
@@ -70,5 +78,43 @@ public abstract class AdvancedTask implements Task {
         } else {
             return false;
         }
+    }
+
+    public int KillNpcAndPickUpItem(String npcToKill, Area areaToKillNpc, String... itemToPickUp) {
+
+        NPC _npcToKill = NPCs.closest(npc  -> npc.getName().equals(npcToKill) && !npc.isInCombat() && Map.canReach(npc));
+
+        GroundItem groundItem = GroundItems.closest(itemToPickUp);
+
+            if (groundItem != null) {
+                Walking.walk(groundItem);
+                sleep( Calculations.random(500, 1500));
+                groundItem.interact("Take");
+                sleepUntil(() -> Inventory.contains(groundItem), Calculations.random(2500, 3000));
+            }
+
+        if (_npcToKill != null) {
+            if (!main.getLocalPlayer().isInCombat() && main.getLocalPlayer().getInteractingCharacter() == null) {
+                Walking.walk(_npcToKill);
+                sleep(Calculations.random(300, 400));
+                Camera.mouseRotateToEntity(_npcToKill);
+
+                if (_npcToKill.interact("Attack")) {
+                    sleepUntil(() -> main.getLocalPlayer().isInCombat() || main.getLocalPlayer().getInteractingCharacter() != null, Calculations.random(2000, 3500));
+                    sleep(Calculations.random(2000, 4000));
+                }
+            }
+            return Calculations.random(2000, 3500);
+        } else {
+            Walking.walk(areaToKillNpc.getRandomTile());
+            sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 4000));
+        }
+
+        if (Dialogues.canContinue()) {
+            Dialogues.spaceToContinue();
+        }
+
+        return Calculations.random(1500,2250);
+
     }
 }
