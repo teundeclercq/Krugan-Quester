@@ -1,6 +1,9 @@
 package com.krugan.quester;
 
 import com.krugan.gui.QuestGUI;
+import com.krugan.quests.ernestthechicken.ErnestTheChicken;
+import com.krugan.quests.ernestthechicken.GetOil;
+import com.krugan.util.Node;
 import com.krugan.util.Task;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.quest.book.FreeQuest;
@@ -19,7 +22,8 @@ import java.util.List;
 @ScriptManifest(category = Category.QUEST, name = "KruganQuester", author = "Krugan", version = 1.1)
 public class Main extends AbstractScript {
     private boolean isRunning;
-    private List<Task> tasks = new LinkedList<>();
+    public List<Task> tasks = new LinkedList<>();
+    public List<Node> nodes = new LinkedList<>();
     private String stateClient;
 
     public void setStateClient(String stateClient) {
@@ -39,33 +43,45 @@ public class Main extends AbstractScript {
         super.stop();
     }
 
-    public void addTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void addNodes(Node node) {
+        this.nodes.add(node);
+    }
+    public void addTasks(Task tasks) {
+        this.tasks.add(tasks);
     }
 
     @Override
     public int onLoop() {
-           if (isRunning) {
-               if (this.tasks.isEmpty()) {
-                   log("No more available tasks, script has ended.");
-                   stop();
-                   return Calculations.random(1000, 5000);
-               } else {
-                   try {
-                       Iterator iterator = tasks.iterator();
-                       while (iterator.hasNext()) {
-                           Task task = (Task) iterator.next();
-                           if (!task.isFinished()) {
-                               return task.execute();
-                           }
-                           task.onFinish();
-                           iterator.remove();
-                       }
-                   } catch (Exception e) {
-                       log(e.toString());
-                   }
-               }
-           }
+        if (isRunning) {
+            if (this.nodes.isEmpty()) {
+                log("No more available nodes, script has ended.");
+                stop();
+                return Calculations.random(1000, 5000);
+            } else {
+                Iterator nodeIterator = nodes.iterator();
+                while (nodeIterator.hasNext()) {
+                    Node node = (Node) nodeIterator.next();
+                    if (node.validate()) {
+                        node.execute();
+                    }
+                    nodeIterator.remove();
+                }
+                    try {
+                        Iterator iterator = tasks.iterator();
+                        while (iterator.hasNext()) {
+                            Task task = (Task) iterator.next();
+                            if (!task.isFinished()) {
+                                return task.execute();
+                            }
+                            task.onFinish();
+                            iterator.remove();
+                        }
+                    } catch (Exception e) {
+                        log(e.toString());
+                    }
+
+            }
+        }
         return Calculations.random(1000, 3000);
     }
 

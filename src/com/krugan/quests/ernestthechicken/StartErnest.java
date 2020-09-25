@@ -17,22 +17,19 @@ public class StartErnest extends AdvancedTask {
         super(main);
     }
 
-    @Override
     public boolean isFinished() {
         return PlayerSettings.getConfig(FreeQuest.ERNEST_THE_CHICKEN.getConfigID()) >= 1;
     }
 
-    @Override
     public void onFinish() {
         log("Done staring Ernest the Chicken");
     }
 
-    @Override
     public int execute() {
-        Area area = AreaProvider.ErnestTheChick.veronicaArea;
-            TravelTo(area);
-        NPC veronica = NPCs.closest("Veronica");
-        TalkToNpc(veronica, "Talk-to", 1);
+//        Area area = AreaProvider.ErnestTheChick.veronicaArea;
+//            TravelTo(area);
+//        NPC veronica = NPCs.closest("Veronica");
+//        TalkToNpc(veronica, "Talk-to", 1);
         return Calculations.random(2500, 3000);
     }
 }

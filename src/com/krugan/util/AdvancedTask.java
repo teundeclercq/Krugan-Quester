@@ -93,7 +93,8 @@ public abstract class AdvancedTask implements Task {
 
     public void TravelToGameObject(GameObject obj) {
         if (obj.exists()) {
-            Walking.walk(obj.getTile());
+            if (Walking.canWalk(obj.getTile()))
+                Walking.walk(obj.getTile());
             MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 3600));
         }
     }
