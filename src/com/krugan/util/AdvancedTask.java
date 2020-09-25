@@ -22,14 +22,42 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.dreambot.api.methods.MethodProvider.sleep;
-import static org.dreambot.api.methods.MethodProvider.sleepUntil;
+import static org.dreambot.api.methods.MethodProvider.*;
 
 public abstract class AdvancedTask implements Task {
     protected Main main;
+    protected List<Task> tasks;
 
     public AdvancedTask(Main main) {
         this.main = main;
+        this.tasks = new LinkedList<>();
+    }
+
+    public void AddTask(Task task) {
+        this.tasks.add(task);
+    }
+
+    public int execute() {
+        Iterator taskIterator = this.tasks.iterator();
+
+        while(taskIterator.hasNext()) {
+            Task task = (Task)taskIterator.next();
+            if (!task.isFinished()) {
+                task.execute();
+            }
+
+            task.onFinish();
+            log("Removing " + task.getClass().toString());
+            taskIterator.remove();
+        }
+        return Calculations.random(200,400);
+    }
+    public boolean isFinished() {
+        return this.tasks.isEmpty();
+    }
+
+    public void onFinish() {
+
     }
 
     public void GetGroundItemIfNeeded(String itemToGet) {
@@ -82,7 +110,7 @@ public abstract class AdvancedTask implements Task {
             GameObject climbable = GameObjects.closest((isStairs) ? ("Stairs") : ("Ladder"));
             if (climbable != null) {
                 climbable.interact((isUp) ? ("Climb-up") : ("Climb-down"));
-                MethodProvider.log((isUp) ? "Climb-up":"Climb-down");
+                log((isUp) ? "Climb-up":"Climb-down");
                 attempts++;
                 MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
             }

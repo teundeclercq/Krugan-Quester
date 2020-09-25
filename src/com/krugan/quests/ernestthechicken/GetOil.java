@@ -3,6 +3,7 @@ package com.krugan.quests.ernestthechicken;
 import com.krugan.quester.Main;
 import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
+import com.krugan.util.WalkAndInteractWithObject;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
@@ -65,6 +66,7 @@ public class GetOil extends AdvancedTask {
     List<GameObject> levers = new LinkedList<>();
     public GetOil(Main main) {
         super(main);
+
         tiles.add(tile1);
         tiles.add(tile2);
         tiles.add(tile3);
@@ -88,7 +90,9 @@ public class GetOil extends AdvancedTask {
         levers.add(leverF);
         levers.add(leverC);
         levers.add(leverE);
-
+        this.tasks.add(new WalkAndInteractWithObject(main, leverA, "pull"));
+        this.tasks.add(new WalkAndInteractWithObject(main, leverB, "pull"));
+        super.execute();
     }
 
     @Override
@@ -101,54 +105,12 @@ public class GetOil extends AdvancedTask {
         log("Got the oil");
     }
 
-    @Override
     public int execute() {
         Iterator tileToGo = tiles.iterator();
         Iterator leverToGo = levers.iterator();
 
         GameObject lever;
 
-        if (lever != null && lever) {
-            
-        }
-
-        while (tileToGo.hasNext()) {
-            Tile tile = (Tile) tileToGo.next();
-            if (tile) {
-
-            }
-        }
-
-        TravelToGameObject(leverB);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
-        ClosestSpecifiedGameObjectInteract("Lever B", "pull");
-        sleep(Calculations.random(2500, 3500));
-
-
-        TravelToGameObject(leverA);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
-        ClosestSpecifiedGameObjectInteract("Lever A", "pull");
-        sleep(Calculations.random(2500, 3500));
-
-        TravelToTile(tile1);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-        TravelToGameObject(leverD);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
-        ClosestSpecifiedGameObjectInteract("Lever D", "pull");
-        sleep(Calculations.random(2500, 3500));
-
-
-        TravelToTile(tile2);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-
         TravelToGameObject(leverB);
         sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
         ClosestSpecifiedGameObjectInteract("Lever B", "pull");
@@ -161,106 +123,137 @@ public class GetOil extends AdvancedTask {
         sleep(Calculations.random(2500, 3500));
 
 
-
-        TravelToTile(tile3);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-
-
-        TravelToTile(tile5);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-
-
-        TravelToTile(tile7);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-        ClosestSpecifiedGameObjectInteract("Lever E", "Pull");
-        sleep(Calculations.random(2500, 3500));
-
-        ClosestSpecifiedGameObjectInteract("Lever F", "Pull");
-        sleep(Calculations.random(3000, 3500));
-
-        TravelToTile(tile9);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-
-
-        TravelToTile(tile11);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-        TravelToGameObject(leverC);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
-        ClosestSpecifiedGameObjectInteract("Lever C", "Pull");
-        sleep(Calculations.random(2500, 3500));
-
-
-
-        TravelToTile(tile12);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-
-        TravelToTile(tile10);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-        TravelToGameObject(leverE);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
-        ClosestSpecifiedGameObjectInteract("Lever E", "Pull");
-        sleep(Calculations.random(2500, 3500));
-
-        TravelToTile(tile9);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-        TravelToTile(tile13);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-
-        TravelToTile(tile4);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-
-        TravelToTile(tile15);
-        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
-        ClosestSpecifiedGameObjectInteract("Door", "Open");
-        sleep(Calculations.random(2500, 3500));
-
-
-        TravelTo(AreaProvider.ErnestTheChick.oilCan);
-
-        GroundItem oil = GroundItems.closest("Oil can");
-
-        if (oil != null) {
-            oil.interact("Take");
-            sleep(Calculations.random(1250, 1650));
-        }
+//        TravelToTile(tile1);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//        TravelToGameObject(leverD);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
+//        ClosestSpecifiedGameObjectInteract("Lever D", "pull");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//        TravelToTile(tile2);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//
+//        TravelToGameObject(leverB);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
+//        ClosestSpecifiedGameObjectInteract("Lever B", "pull");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//        TravelToGameObject(leverA);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
+//        ClosestSpecifiedGameObjectInteract("Lever A", "pull");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//
+//        TravelToTile(tile3);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//
+//
+//        TravelToTile(tile5);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//
+//
+//        TravelToTile(tile7);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 5000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//        ClosestSpecifiedGameObjectInteract("Lever E", "Pull");
+//        sleep(Calculations.random(2500, 3500));
+//
+//        ClosestSpecifiedGameObjectInteract("Lever F", "Pull");
+//        sleep(Calculations.random(3000, 3500));
+//
+//        TravelToTile(tile9);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//
+//
+//        TravelToTile(tile11);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//        TravelToGameObject(leverC);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
+//        ClosestSpecifiedGameObjectInteract("Lever C", "Pull");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//
+//        TravelToTile(tile12);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//
+//        TravelToTile(tile10);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//        TravelToGameObject(leverE);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
+//        ClosestSpecifiedGameObjectInteract("Lever E", "Pull");
+//        sleep(Calculations.random(2500, 3500));
+//
+//        TravelToTile(tile9);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//        TravelToTile(tile13);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//
+//        TravelToTile(tile4);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//
+//        TravelToTile(tile15);
+//        sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(2500, 7000));
+//        ClosestSpecifiedGameObjectInteract("Door", "Open");
+//        sleep(Calculations.random(2500, 3500));
+//
+//
+//        TravelTo(AreaProvider.ErnestTheChick.oilCan);
+//
+//        GroundItem oil = GroundItems.closest("Oil can");
+//
+//        if (oil != null) {
+//            oil.interact("Take");
+//            sleep(Calculations.random(1250, 1650));
+//        }
 
         return Calculations.random(1250, 1650);
     }
