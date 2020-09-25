@@ -1,6 +1,7 @@
-package com.krugan.util;
+package com.krugan.util.interacting;
 
 import com.krugan.quester.Main;
+import com.krugan.util.AdvancedTask;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.MethodProvider;
 import org.dreambot.api.methods.container.impl.Inventory;

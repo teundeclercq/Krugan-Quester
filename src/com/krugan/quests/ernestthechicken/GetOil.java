@@ -2,19 +2,11 @@ package com.krugan.quests.ernestthechicken;
 
 import com.krugan.quester.Main;
 import com.krugan.util.*;
-import org.dreambot.api.methods.Calculations;
+import com.krugan.util.interacting.GetGroundItem;
+import com.krugan.util.walking.WalkToObject;
+import com.krugan.util.walking.WalkToTile;
 import org.dreambot.api.methods.container.impl.Inventory;
-import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.item.GroundItems;
-import org.dreambot.api.methods.map.Area;
-import org.dreambot.api.methods.map.Tile;
-import org.dreambot.api.wrappers.interactive.GameObject;
-import org.dreambot.api.wrappers.items.GroundItem;
-import t_walking.WalkT;
-
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 import static org.dreambot.api.methods.MethodProvider.*;
 
@@ -85,11 +77,10 @@ public class GetOil extends AdvancedTask {
 
         this.tasks.add(new WalkToTile(main, GroundItems.closest("Oil can").getTile()));
         this.tasks.add(new GetGroundItem(main, "Oil can"));
-        super.execute();
     }
 
     public boolean isFinished() {
-        return Inventory.contains("Oil");
+        return Inventory.contains("Oil can");
     }
 
     public void onFinish() {
