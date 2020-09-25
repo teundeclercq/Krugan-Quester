@@ -18,6 +18,7 @@ public class GetFishFood extends AdvancedTask {
         this.tasks.add(new UseItemOnItem(main, "Fish food", "Poison"));
     }
 
+
     @Override
     public boolean isFinished() {
         return Inventory.contains("Poisoned fish food");

@@ -75,8 +75,13 @@ public class GetOil extends AdvancedTask {
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile15));
         this.tasks.add(new InteractWithObject(main, "Door", "Open"));
 
-        this.tasks.add(new WalkToTile(main, GroundItems.closest("Oil can").getTile()));
+//        this.tasks.add(new WalkToTile(main, GroundItems.closest("Oil can").getTile()));
         this.tasks.add(new GetGroundItem(main, "Oil can"));
+
+    }
+
+    public void taskState() {
+        main.setStateClient("getting oil");
     }
 
     public boolean isFinished() {

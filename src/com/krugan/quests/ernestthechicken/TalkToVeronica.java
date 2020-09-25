@@ -10,7 +10,10 @@ import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
+import org.dreambot.api.script.listener.PaintListener;
 import org.dreambot.api.wrappers.interactive.NPC;
+
+import java.awt.*;
 
 import static org.dreambot.api.methods.MethodProvider.log;
 
@@ -20,6 +23,7 @@ public class TalkToVeronica extends AdvancedTask {
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.veronicaArea));
         this.tasks.add(new TalkTo(main, "Veronica", "Talk-to", 1));
         this.tasks.add(new TalkTo(main, "Veronica", "Talk-to", 0));
+        super.execute();
     }
 
     public boolean isFinished() {

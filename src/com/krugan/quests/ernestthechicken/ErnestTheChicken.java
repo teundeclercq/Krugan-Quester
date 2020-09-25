@@ -25,6 +25,8 @@ public class ErnestTheChicken extends Node {
         this.main.addTasks(new GetPresureGauge(main));
         this.main.addTasks(new GetRubberTube(main));
         this.main.addTasks(new TalkToProffesorOddenstein(main));
+
+
         sleep(Calculations.random(1000, 4000));
     }
 

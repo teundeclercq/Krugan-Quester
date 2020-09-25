@@ -18,6 +18,7 @@ public class UseItemOnGameObject extends AdvancedTask {
         super(main);
         this.gameObject1 = gameObject1;
         this.item1 = item1;
+
     }
 
     @Override

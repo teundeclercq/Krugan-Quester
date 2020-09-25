@@ -13,10 +13,12 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Map;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.walking.impl.Walking;
+import org.dreambot.api.script.listener.PaintListener;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.api.wrappers.items.GroundItem;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -24,7 +26,7 @@ import java.util.List;
 
 import static org.dreambot.api.methods.MethodProvider.*;
 
-public abstract class AdvancedTask implements Task {
+public abstract class AdvancedTask implements Task, PaintListener {
     protected Main main;
     protected List<Task> tasks;
 
@@ -36,13 +38,22 @@ public abstract class AdvancedTask implements Task {
     public void AddTask(Task task) {
         this.tasks.add(task);
     }
+    public void taskState() {
+    }
 
+    @Override
+    public void onPaint(Graphics g) {
+        g.setColor(Color.RED);
+        g.setFont(new Font("Avenier", Font.PLAIN, 12));
+        g.drawString("State: " + "Talking to veronica", 10, 35);
+    }
     public int execute() {
         Iterator taskIterator = this.tasks.iterator();
 
         while(taskIterator.hasNext()) {
             Task task = (Task)taskIterator.next();
             if (!task.isFinished()) {
+                task.taskState();
                 task.execute();
             }
 
@@ -57,7 +68,7 @@ public abstract class AdvancedTask implements Task {
     }
 
     public void onFinish() {
-
+        
     }
 
     public void GetGroundItemIfNeeded(String itemToGet) {

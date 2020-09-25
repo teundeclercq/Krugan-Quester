@@ -26,7 +26,6 @@ public class GetGroundItem extends AdvancedTask {
         return Calculations.random(300, 500);
     }
 
-    @Override
     public boolean isFinished() {
         return Inventory.contains(groundItem);
     }

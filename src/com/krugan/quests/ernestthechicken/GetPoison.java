@@ -17,25 +17,17 @@ public class GetPoison extends AdvancedTask {
         super(main);
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.poisonArea));
         this.tasks.add(new GetGroundItem(main, "Poison"));
+        super.execute();
     }
 
     @Override
+
     public boolean isFinished() {
         return Inventory.contains("Poison");
     }
 
-    @Override
     public void onFinish() {
         log("Got the poison");
     }
 
-    @Override
-    public int execute() {
-        Area area = AreaProvider.ErnestTheChick.poisonArea;
-            TravelTo(area);
-
-        GetGroundItemIfNeeded("Poison");
-
-        return Calculations.random(1500,3000);
-    }
 }

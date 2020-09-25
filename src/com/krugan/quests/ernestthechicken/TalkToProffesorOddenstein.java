@@ -18,6 +18,7 @@ public class TalkToProffesorOddenstein extends AdvancedTask {
         this.tasks.add(new TalkTo(main, "Professor oddenstein", "Talk-to", 0));
     }
 
+
     @Override
     public boolean isFinished() {
         return PlayerSettings.getConfig(FreeQuest.ERNEST_THE_CHICKEN.getConfigID()) >= 5;

@@ -22,6 +22,7 @@ public class GoToCellar extends AdvancedTask {
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.cellarTrap));
     }
 
+
     @Override
     public boolean isFinished() {
         return AreaProvider.ErnestTheChick.cellarTrap.contains(main.getLocalPlayer());

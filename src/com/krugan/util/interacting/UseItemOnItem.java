@@ -16,6 +16,7 @@ public class UseItemOnItem extends AdvancedTask {
         super(main);
         this.item1 = item1;
         this.item2 = item2;
+
     }
 
     public boolean isFinished() {

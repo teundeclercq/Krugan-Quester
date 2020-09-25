@@ -5,6 +5,7 @@ import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
 import com.krugan.util.interacting.GetGroundItem;
 import com.krugan.util.walking.WalkToArea;
+import com.krugan.util.walking.WalkToGroundItem;
 import com.krugan.util.walking.WalkToObject;
 import com.krugan.util.walking.WalkToTile;
 import org.dreambot.api.methods.container.impl.Inventory;
@@ -15,7 +16,7 @@ public class GetSpade extends AdvancedTask {
     public GetSpade(Main main) {
         super(main);
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.spadeRoom));
-        this.tasks.add(new WalkToTile(main, GroundItems.closest("Spade").getTile()));
+        this.tasks.add(new WalkToGroundItem(main, "Spade"));
         this.tasks.add(new GetGroundItem(main, "Spade"));
     }
 

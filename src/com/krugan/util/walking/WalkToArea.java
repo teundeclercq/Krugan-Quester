@@ -14,15 +14,13 @@ public class WalkToArea extends AdvancedTask {
         this.area = area;
     }
 
-    @Override
     public boolean isFinished() {
         return area.contains(main.getLocalPlayer());
     }
 
-    @Override
     public int execute() {
-        if (!area.contains(main.getLocalPlayer()) && !area.contains(Walking.getDestination())) {
-            Walking.clickTileOnMinimap(area.getRandomTile());
+        while (!area.contains(main.getLocalPlayer())) {
+            Walking.walk(area.getRandomTile());
             MethodProvider.sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 6000));
         }
         return Calculations.random(3000, 4000);

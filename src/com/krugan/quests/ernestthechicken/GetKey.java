@@ -17,6 +17,7 @@ public class GetKey extends AdvancedTask {
         this.tasks.add(new InteractWithObject(main, "Compost heap", "Search"));
     }
 
+
     public boolean isFinished() {
         return Inventory.contains("Key");
     }

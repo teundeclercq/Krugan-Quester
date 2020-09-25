@@ -71,6 +71,7 @@ public class Main extends AbstractScript {
                         while (iterator.hasNext()) {
                             Task task = (Task) iterator.next();
                             if (!task.isFinished()) {
+                                task.taskState();
                                 return task.execute();
                             }
                             task.onFinish();
@@ -89,10 +90,4 @@ public class Main extends AbstractScript {
         this.isRunning = running;
     }
 
-    @Override
-    public void onPaint(Graphics g) {
-        g.setColor(Color.RED);
-        g.setFont(new Font("Avenier", Font.PLAIN, 12));
-        g.drawString("State: " + stateClient, 10, 35);
-    }
 }

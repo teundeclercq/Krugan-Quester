@@ -16,6 +16,7 @@ public class GetPresureGauge extends AdvancedTask {
         this.tasks.add(new InteractWithObject(main, "Fountain", "Search"));
     }
 
+
     @Override
     public boolean isFinished() {
         return Inventory.contains("Pressure gauge");
