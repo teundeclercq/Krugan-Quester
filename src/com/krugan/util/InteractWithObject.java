@@ -30,7 +30,6 @@ public class InteractWithObject extends AdvancedTask {
     }
 
     public int execute() {
-        main.setStateClient("Interacting with object.");
         while (!main.getLocalPlayer().isAnimating() || main.getLocalPlayer().isMoving()) {
             if (InteractingWithObject(obj, action)) {
                 sleep(Calculations.random(3000, 6000));

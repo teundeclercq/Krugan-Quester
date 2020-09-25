@@ -2,7 +2,6 @@ package com.krugan.util;
 
 import com.krugan.quester.Main;
 import com.krugan.quests.ernestthechicken.ErnestTheChicken;
-import com.krugan.quests.ernestthechicken.TalkToBob;
 
 public class QuestFactory {
     public static Node createQuest(QuestType type, Main ctx) {
@@ -52,8 +51,6 @@ public class QuestFactory {
 //                return witchPotionNodes;
             case ERNEST_THE_CHICKEN:
                 return new ErnestTheChicken(ctx);
-            case TALK_TO_TEST:
-                return new TalkToBob(ctx);
             default:
                 return null;
         }

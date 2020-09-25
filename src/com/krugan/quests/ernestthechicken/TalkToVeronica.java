@@ -19,6 +19,7 @@ public class TalkToVeronica extends AdvancedTask {
         super(main);
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.veronicaArea));
         this.tasks.add(new TalkTo(main, "Veronica", "Talk-to", 1));
+        this.tasks.add(new TalkTo(main, "Veronica", "Talk-to", 0));
     }
 
     public boolean isFinished() {
@@ -27,13 +28,5 @@ public class TalkToVeronica extends AdvancedTask {
 
     public void onFinish() {
         log("Done staring Ernest the Chicken");
-    }
-
-    public int execute() {
-//        Area area = AreaProvider.ErnestTheChick.veronicaArea;
-//            TravelTo(area);
-//        NPC veronica = NPCs.closest("Veronica");
-//        TalkToNpc(veronica, "Talk-to", 1);
-        return Calculations.random(2500, 3000);
     }
 }

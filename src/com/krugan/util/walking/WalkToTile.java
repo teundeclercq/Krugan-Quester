@@ -22,7 +22,6 @@ public class WalkToTile extends AdvancedTask {
     }
 
     public int execute() {
-        main.setStateClient("Walking to tile");
         while (Walking.walk(tile)) {
             if (main.getLocalPlayer().getTile().equals(tile)) {
                 sleep(Calculations.random(2000, 4000));

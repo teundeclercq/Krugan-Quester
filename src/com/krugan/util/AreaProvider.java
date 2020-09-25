@@ -128,6 +128,8 @@ public class AreaProvider {
         public final static Tile tile14 = new Tile(3102, 9761, 0);
 
         public final static Tile tile15 = new Tile(3101, 9755, 0);
+        public final static Area compostArea = new Area(3088, 3353, 3086, 3356);
+        public final static Area professorArea = new Area(3108, 3369, 3112, 3364, 2);;
     }
 
 }
