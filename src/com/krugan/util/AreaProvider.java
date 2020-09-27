@@ -132,4 +132,10 @@ public class AreaProvider {
         public final static Area professorArea = new Area(3108, 3369, 3112, 3364, 2);;
     }
 
+    public static class RuneMysteries {
+        public final static Area dukeArea = new Area(3208, 3224, 3213, 3218, 1);
+        public final static Area seridorArea = new Area(3096, 9574, 3107, 9569);
+        public final static Area auburyShop = new Area(3255, 3400, 3252, 3403);
+    }
+
 }

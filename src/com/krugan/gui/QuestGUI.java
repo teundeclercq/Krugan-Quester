@@ -15,7 +15,7 @@ public class QuestGUI {
     private JCheckBox ironManBTWCheckBox;
     private JButton startButton;
     private JComboBox<QuestType> QuestCMB;
-    private Node questNodes;
+    private Task questNodes;
 
 
     public QuestGUI(Main main) {
@@ -31,9 +31,8 @@ public class QuestGUI {
         frame.setVisible(true);
 
         startButton.addActionListener(l -> {
-            main.addNodes(questNodes);
+            main.addTasks(questNodes);
             frame.dispose();
-            main.setRunning(true);
         });
     }
 }

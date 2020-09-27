@@ -2,9 +2,11 @@ package com.krugan.util;
 
 import com.krugan.quester.Main;
 import com.krugan.quests.ernestthechicken.ErnestTheChicken;
+import com.krugan.quests.runemysteries.RuneMysteries;
+import com.krugan.quests.vampireslayer.VampireSlayer;
 
 public class QuestFactory {
-    public static Node createQuest(QuestType type, Main ctx) {
+    public static Task createQuest(QuestType type, Main ctx) {
         switch (type) {
             case COOKS_ASSISTANT:
 //                ArrayList<Task> cookAssistantNodes = new ArrayList<>();
@@ -51,6 +53,10 @@ public class QuestFactory {
 //                return witchPotionNodes;
             case ERNEST_THE_CHICKEN:
                 return new ErnestTheChicken(ctx);
+            case RUNE_MYSTERIES:
+                return new RuneMysteries(ctx);
+            case VAMPIRE_SLAYER:
+                return new VampireSlayer(ctx);
             default:
                 return null;
         }

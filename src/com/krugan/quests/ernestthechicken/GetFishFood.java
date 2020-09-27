@@ -15,9 +15,13 @@ public class GetFishFood extends AdvancedTask {
         super(main);
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.fishFoodArea));
         this.tasks.add(new GetGroundItem(main, "Fish food"));
-        this.tasks.add(new UseItemOnItem(main, "Fish food", "Poison"));
+        this.tasks.add(new UseItemOnItem(main, "Fish food", "Poison", "You poison the fish food."));
     }
 
+    @Override
+    public String toString() {
+        return "Getting fish food";
+    }
 
     @Override
     public boolean isFinished() {

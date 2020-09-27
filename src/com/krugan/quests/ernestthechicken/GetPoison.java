@@ -17,11 +17,14 @@ public class GetPoison extends AdvancedTask {
         super(main);
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.poisonArea));
         this.tasks.add(new GetGroundItem(main, "Poison"));
-        super.execute();
     }
 
     @Override
+    public String toString() {
+        return "Getting poison";
+    }
 
+    @Override
     public boolean isFinished() {
         return Inventory.contains("Poison");
     }

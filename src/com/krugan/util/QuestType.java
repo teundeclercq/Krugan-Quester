@@ -7,4 +7,6 @@ public enum QuestType {
     IMP_CATCHER,
     WITCH_POTION,
     ERNEST_THE_CHICKEN,
+    RUNE_MYSTERIES,
+    VAMPIRE_SLAYER,
 }

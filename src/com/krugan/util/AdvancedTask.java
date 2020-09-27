@@ -35,31 +35,22 @@ public abstract class AdvancedTask implements Task, PaintListener {
         this.tasks = new LinkedList<>();
     }
 
-    public void AddTask(Task task) {
-        this.tasks.add(task);
-    }
+    public void AddTask() {}
     public void taskState() {
     }
 
-    @Override
-    public void onPaint(Graphics g) {
-        g.setColor(Color.RED);
-        g.setFont(new Font("Avenier", Font.PLAIN, 12));
-        g.drawString("State: " + "Talking to veronica", 10, 35);
-    }
     public int execute() {
         Iterator taskIterator = this.tasks.iterator();
 
         while(taskIterator.hasNext()) {
             Task task = (Task)taskIterator.next();
             if (!task.isFinished()) {
-                task.taskState();
                 task.execute();
+            } else {
+                log("Removing " + task.getClass().toString());
+                taskIterator.remove();
             }
-
             task.onFinish();
-            log("Removing " + task.getClass().toString());
-            taskIterator.remove();
         }
         return Calculations.random(200,400);
     }
@@ -162,7 +153,6 @@ public abstract class AdvancedTask implements Task, PaintListener {
     }
 
     public int KillNpcAndPickUpItem(String npcToKill, Area areaToKillNpc, String... itemToPickUp) {
-
         NPC _npcToKill = NPCs.closest(npc  -> npc.getName().equals(npcToKill) && !npc.isInCombat() && npc.isOnScreen() && Map.canReach(npc));
 
         GroundItem groundItem = GroundItems.closest(itemToPickUp);

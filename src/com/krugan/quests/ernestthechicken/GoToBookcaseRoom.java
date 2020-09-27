@@ -11,15 +11,21 @@ import org.dreambot.api.methods.interactive.GameObjects;
 public class GoToBookcaseRoom extends AdvancedTask {
     public GoToBookcaseRoom(Main main) {
         super(main);
-        this.tasks.add(new InteractWithObject(main, "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main, "Door", "Open", null));
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.cellarTrap));
-        this.tasks.add(new InteractWithObject(main, "Ladder", "Climb-up"));
+        this.tasks.add(new InteractWithObject(main, "Ladder", "Climb-up", null));
         this.tasks.add(new WalkToObject(main, GameObjects.closest("Lever")));
-        this.tasks.add(new InteractWithObject(main, "Lever", "Pull"));
+        this.tasks.add(new InteractWithObject(main, "Lever", "Pull", null));
+    }
+
+    @Override
+    public String toString() {
+        return "Getting to book case room";
     }
 
     @Override
     public boolean isFinished() {
-        return AreaProvider.ErnestTheChick.bookCaseRoom.contains(main.getLocalPlayer());
+        return true;
+//        AreaProvider.ErnestTheChick.bookCaseRoom.contains(main.getLocalPlayer());
     }
 }

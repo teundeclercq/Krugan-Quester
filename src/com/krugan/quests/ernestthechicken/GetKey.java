@@ -14,9 +14,14 @@ public class GetKey extends AdvancedTask {
         super(main);
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.compostArea));
         this.tasks.add(new WalkToObject(main, GameObjects.closest("Compost heap")));
-        this.tasks.add(new InteractWithObject(main, "Compost heap", "Search"));
+        this.tasks.add(new InteractWithObject(main, "Compost heap", "Search", "...and find a small key."));
     }
 
+
+    @Override
+    public String toString() {
+        return "Getting the key";
+    }
 
     public boolean isFinished() {
         return Inventory.contains("Key");

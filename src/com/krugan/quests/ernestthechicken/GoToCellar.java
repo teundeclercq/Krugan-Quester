@@ -17,15 +17,20 @@ public class GoToCellar extends AdvancedTask {
     public GoToCellar(Main main) {
         super(main);
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.bookCaseRoom));
-        this.tasks.add(new InteractWithObject(main, "Bookcase", "Search"));
-        this.tasks.add(new InteractWithObject(main, "Ladder", "Climb-down"));
+        this.tasks.add(new InteractWithObject(main, "Bookcase", "Search", "You've found a secret door!"));
+        this.tasks.add(new InteractWithObject(main, "Ladder", "Climb-down", null));
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.cellarTrap));
     }
 
+    @Override
+    public String toString() {
+        return "Going to cellar";
+    }
 
     @Override
     public boolean isFinished() {
-        return AreaProvider.ErnestTheChick.cellarTrap.contains(main.getLocalPlayer());
+        return true;
+//        AreaProvider.ErnestTheChick.cellarTrap.contains(main.getLocalPlayer());
     }
 
     @Override

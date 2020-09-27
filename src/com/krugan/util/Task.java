@@ -5,4 +5,5 @@ public interface Task {
     boolean isFinished();
     void onFinish();
     int execute();
+    void AddTask();
 }

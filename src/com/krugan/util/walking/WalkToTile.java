@@ -25,7 +25,7 @@ public class WalkToTile extends AdvancedTask {
         while (Walking.walk(tile)) {
             if (main.getLocalPlayer().getTile().equals(tile)) {
                 sleep(Calculations.random(2000, 4000));
-                standingOnTile =true;
+                standingOnTile = true;
                 break;
             }
             sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(800, 1250));

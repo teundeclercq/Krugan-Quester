@@ -15,12 +15,17 @@ public class TalkToProffesorOddenstein extends AdvancedTask {
         this.tasks.add(new TalkTo(main, "Professor oddenstein", "Talk-to", 1));
         this.tasks.add(new TalkTo(main, "Professor oddenstein", "Talk-to", 2));
         this.tasks.add(new TalkTo(main, "Professor oddenstein", "Talk-to", 0));
-        this.tasks.add(new TalkTo(main, "Professor oddenstein", "Talk-to", 0));
+        this.tasks.add(new TalkTo(main, "Ernest", "Talk-to", 0));
     }
 
 
     @Override
+    public String toString() {
+        return "Finishing - talkiing to professor oddenstein";
+    }
+
+    @Override
     public boolean isFinished() {
-        return PlayerSettings.getConfig(FreeQuest.ERNEST_THE_CHICKEN.getConfigID()) >= 5;
+        return PlayerSettings.getConfig(FreeQuest.ERNEST_THE_CHICKEN.getConfigID()) >= 3;
     }
 }

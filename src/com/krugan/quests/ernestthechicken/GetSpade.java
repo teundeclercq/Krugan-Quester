@@ -21,6 +21,11 @@ public class GetSpade extends AdvancedTask {
     }
 
     @Override
+    public String toString() {
+        return "Getting spade";
+    }
+
+    @Override
     public boolean isFinished() {
         return Inventory.contains("Spade");
     }

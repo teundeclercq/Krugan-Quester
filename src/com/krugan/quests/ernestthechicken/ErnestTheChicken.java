@@ -1,19 +1,21 @@
 package com.krugan.quests.ernestthechicken;
 
 import com.krugan.quester.Main;
+import com.krugan.quests.cooksassistant.EndQuestNode;
+import com.krugan.util.AdvancedTask;
 import com.krugan.util.Node;
+import com.krugan.util.QuestEnd;
 import com.krugan.util.walking.WalkToArea;
 import org.dreambot.api.methods.Calculations;
 
 import static org.dreambot.api.methods.MethodProvider.sleep;
 
-public class ErnestTheChicken extends Node {
+public class ErnestTheChicken extends AdvancedTask {
     public ErnestTheChicken(Main main) {
         super(main);
     }
 
-    @Override
-    public void execute() {
+    public void AddTask() {
         this.main.addTasks(new TalkToVeronica(main));
         this.main.addTasks(new GetPoison(main));
         this.main.addTasks(new GetFishFood(main));
@@ -25,13 +27,7 @@ public class ErnestTheChicken extends Node {
         this.main.addTasks(new GetPresureGauge(main));
         this.main.addTasks(new GetRubberTube(main));
         this.main.addTasks(new TalkToProffesorOddenstein(main));
-
-
-        sleep(Calculations.random(1000, 4000));
-    }
-
-    @Override
-    public boolean validate() {
-        return this.main.tasks.isEmpty();
+        this.main.addTasks(new QuestEnd(main));
+        this.main.setRunning(true);
     }
 }

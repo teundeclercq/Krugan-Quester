@@ -46,4 +46,9 @@ public class QuestEnd extends AdvancedTask {
         }
         return Calculations.random(2000, 4000);
     }
+
+    @Override
+    public String toString() {
+        return "Ending the quest";
+    }
 }

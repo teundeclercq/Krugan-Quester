@@ -22,6 +22,11 @@ public class GetRubberTube extends AdvancedTask {
 
 
     @Override
+    public String toString() {
+        return "Getting rubber tube";
+    }
+
+    @Override
     public boolean isFinished() {
         return Inventory.contains("Rubber tube");
     }

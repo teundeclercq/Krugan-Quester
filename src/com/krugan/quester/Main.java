@@ -52,35 +52,35 @@ public class Main extends AbstractScript {
 
     @Override
     public int onLoop() {
+        log(PlayerSettings.getConfig(FreeQuest.ERNEST_THE_CHICKEN.getConfigID()));
         if (isRunning) {
-            if (this.nodes.isEmpty()) {
+            if (this.tasks.isEmpty()) {
                 log("No more available nodes, script has ended.");
                 stop();
                 return Calculations.random(1000, 5000);
             } else {
-                Iterator nodeIterator = nodes.iterator();
-                while (nodeIterator.hasNext()) {
-                    Node node = (Node) nodeIterator.next();
-                    if (node.validate()) {
-                        node.execute();
-                    }
-                    nodeIterator.remove();
-                }
-                    try {
-                        Iterator iterator = tasks.iterator();
-                        while (iterator.hasNext()) {
-                            Task task = (Task) iterator.next();
-                            if (!task.isFinished()) {
-                                task.taskState();
-                                return task.execute();
-                            }
-                            task.onFinish();
-                            iterator.remove();
+                try {
+                    Iterator iterator = tasks.iterator();
+                    while (iterator.hasNext()) {
+                        Task task = (Task) iterator.next();
+                        if (!task.isFinished()) {
+                            log(task.toString());
+                            setStateClient(task.toString());
+                            return task.execute();
                         }
-                    } catch (Exception e) {
-                        log(e.toString());
+                        task.onFinish();
+                        iterator.remove();
                     }
-
+                } catch (Exception e) {
+                    log(e.toString());
+                }
+            }
+        } else {
+            log("Doing nothing");
+            if (!tasks.isEmpty()) {
+                Iterator it = tasks.iterator();
+                Task t = (Task) it.next();
+                t.AddTask();
             }
         }
         return Calculations.random(1000, 3000);
@@ -88,6 +88,13 @@ public class Main extends AbstractScript {
 
     public void setRunning(boolean running) {
         this.isRunning = running;
+    }
+
+    @Override
+    public void onPaint(Graphics g) {
+        g.setColor(Color.RED);
+        g.setFont(new Font("Avenier", Font.PLAIN, 12));
+        g.drawString("State: " + stateClient, 10, 35);
     }
 
 }

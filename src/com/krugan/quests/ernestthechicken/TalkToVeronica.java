@@ -23,11 +23,15 @@ public class TalkToVeronica extends AdvancedTask {
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.veronicaArea));
         this.tasks.add(new TalkTo(main, "Veronica", "Talk-to", 1));
         this.tasks.add(new TalkTo(main, "Veronica", "Talk-to", 0));
-        super.execute();
     }
 
     public boolean isFinished() {
         return PlayerSettings.getConfig(FreeQuest.ERNEST_THE_CHICKEN.getConfigID()) >= 1;
+    }
+
+    @Override
+    public String toString() {
+        return "Talking to veronica";
     }
 
     public void onFinish() {

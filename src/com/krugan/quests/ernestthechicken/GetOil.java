@@ -13,75 +13,70 @@ import static org.dreambot.api.methods.MethodProvider.*;
 public class GetOil extends AdvancedTask {
     public GetOil(Main main) {
         super(main);
-        this.tasks.add(new InteractWithObject(main, "Lever B", "Pull"));
+        this.tasks.add(new InteractWithObject(main, "Lever B", "Pull", "You pull lever B down."));
 
-        this.tasks.add(new InteractWithObject(main, "Lever A", "Pull"));
+        this.tasks.add(new InteractWithObject(main, "Lever A", "Pull", "You pull lever A down."));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile1));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
-        this.tasks.add(new WalkToObject(main, AreaProvider.ErnestTheChick.leverD));
-        this.tasks.add(new InteractWithObject(main, "Lever D", "Pull"));
+        this.tasks.add(new InteractWithObject(main, "Lever D", "Pull", "You pull lever D down."));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile2));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
-        this.tasks.add(new WalkToObject(main, AreaProvider.ErnestTheChick.leverB));
-        this.tasks.add(new InteractWithObject(main, "Lever B", "Pull"));
+        this.tasks.add(new InteractWithObject(main, "Lever B", "Pull", "You pull lever B up."));
 
-        this.tasks.add(new WalkToObject(main, AreaProvider.ErnestTheChick.leverA));
-        this.tasks.add(new InteractWithObject(main, "Lever A", "Pull"));
+        this.tasks.add(new InteractWithObject(main, "Lever A", "Pull", "You pull lever A up."));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile3));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile5));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile7));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
-        this.tasks.add(new InteractWithObject(main, "Lever E", "Pull"));
+        this.tasks.add(new InteractWithObject(main, "Lever E", "Pull", "You pull lever E down."));
 
-        this.tasks.add(new InteractWithObject(main, "Lever F", "Pull"));
+        this.tasks.add(new InteractWithObject(main, "Lever F", "Pull", "You pull lever F down."));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile9));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile11));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
-        this.tasks.add(new WalkToObject(main, AreaProvider.ErnestTheChick.leverC));
-        this.tasks.add(new InteractWithObject(main, "Lever C", "Pull"));
+        this.tasks.add(new InteractWithObject(main, "Lever C", "Pull", "You pull lever C down."));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile12));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile10));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
-        this.tasks.add(new WalkToObject(main, AreaProvider.ErnestTheChick.leverE));
-        this.tasks.add(new InteractWithObject(main, "Lever E", "Pull"));
+        this.tasks.add(new InteractWithObject(main, "Lever E", "Pull", "You pull lever E up."));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile9));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile13));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile4));
-        this.tasks.add(new InteractWithObject(main,  "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile15));
-        this.tasks.add(new InteractWithObject(main, "Door", "Open"));
+        this.tasks.add(new InteractWithObject(main, "Door", "Open",  null));
 
-//        this.tasks.add(new WalkToTile(main, GroundItems.closest("Oil can").getTile()));
         this.tasks.add(new GetGroundItem(main, "Oil can"));
 
     }
 
-    public void taskState() {
-        main.setStateClient("getting oil");
+    @Override
+    public String toString() {
+        return "getting the oil";
     }
 
     public boolean isFinished() {
