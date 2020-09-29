@@ -1,12 +1,8 @@
 package com.krugan.quests.ernestthechicken;
 
 import com.krugan.quester.Main;
-import com.krugan.quests.cooksassistant.EndQuestNode;
 import com.krugan.util.AdvancedTask;
-import com.krugan.util.Node;
 import com.krugan.util.QuestEnd;
-import com.krugan.util.walking.WalkToArea;
-import org.dreambot.api.methods.Calculations;
 
 import static org.dreambot.api.methods.MethodProvider.sleep;
 

@@ -1,14 +1,11 @@
 package com.krugan.quests.runemysteries;
 
 import com.krugan.quester.Main;
-import com.krugan.quests.ernestthechicken.*;
-import com.krugan.quests.witchpotion.StartWitchPotion;
 import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
 import com.krugan.util.QuestEnd;
 import com.krugan.util.talking.TalkTo;
 import com.krugan.util.walking.WalkToArea;
-import org.dreambot.A;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
