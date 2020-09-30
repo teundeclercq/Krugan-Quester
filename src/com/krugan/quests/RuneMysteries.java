@@ -1,4 +1,4 @@
-package com.krugan.quests.runemysteries;
+package com.krugan.quests;
 
 import com.krugan.quester.Main;
 import com.krugan.util.AdvancedTask;

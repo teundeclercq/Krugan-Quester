@@ -3,7 +3,7 @@ package com.krugan.quests.ernestthechicken;
 import com.krugan.quester.Main;
 import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
-import com.krugan.util.InteractWithObject;
+import com.krugan.util.interacting.InteractWithObject;
 import com.krugan.util.interacting.InsideDialogue;
 import com.krugan.util.interacting.UseItemOnGameObject;
 import com.krugan.util.walking.WalkToArea;

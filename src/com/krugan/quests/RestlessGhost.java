@@ -1,22 +1,16 @@
-package com.krugan.quests.restlessghost;
+package com.krugan.quests;
 
 import com.krugan.quester.Main;
 import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
-import com.krugan.util.InteractWithObject;
+import com.krugan.util.interacting.InteractWithObject;
 import com.krugan.util.QuestEnd;
 import com.krugan.util.interacting.EquipItem;
 import com.krugan.util.interacting.UseItemOnGameObject;
 import com.krugan.util.talking.TalkTo;
 import com.krugan.util.walking.WalkToArea;
-import org.dreambot.api.methods.Calculations;
-import org.dreambot.api.methods.container.impl.Inventory;
-import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.wrappers.interactive.NPC;
-import org.dreambot.api.wrappers.items.Item;
-import t_equipment.EquipItemT;
 
 import static org.dreambot.api.methods.MethodProvider.sleep;
 

@@ -1,9 +1,9 @@
-package com.krugan.quests.witchpotion;
+package com.krugan.quests;
 
 import com.krugan.quester.Main;
 import com.krugan.util.AdvancedTask;
 import com.krugan.util.AreaProvider;
-import com.krugan.util.InteractWithObject;
+import com.krugan.util.interacting.InteractWithObject;
 import com.krugan.util.QuestEnd;
 import com.krugan.util.interacting.*;
 import com.krugan.util.talking.TalkTo;

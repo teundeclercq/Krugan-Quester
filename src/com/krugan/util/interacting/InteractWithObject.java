@@ -1,7 +1,8 @@
-package com.krugan.util;
+package com.krugan.util.interacting;
 
 import c_utilities.CTime;
 import com.krugan.quester.Main;
+import com.krugan.util.AdvancedTask;
 import org.dreambot.api.input.event.impl.InteractionEvent;
 import org.dreambot.api.input.event.impl.InteractionSetting;
 import org.dreambot.api.methods.Calculations;

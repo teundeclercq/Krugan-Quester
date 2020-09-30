@@ -3,10 +3,9 @@ package com.krugan.quests.ernestthechicken;
 import com.krugan.quester.Main;
 import com.krugan.util.*;
 import com.krugan.util.interacting.GetGroundItem;
-import com.krugan.util.walking.WalkToObject;
+import com.krugan.util.interacting.InteractWithObject;
 import com.krugan.util.walking.WalkToTile;
 import org.dreambot.api.methods.container.impl.Inventory;
-import org.dreambot.api.methods.item.GroundItems;
 
 import static org.dreambot.api.methods.MethodProvider.*;
 

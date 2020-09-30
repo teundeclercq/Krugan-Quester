@@ -1,18 +1,15 @@
-package com.krugan.quests.cooksassistant;
+package com.krugan.quests;
 
 import com.krugan.quester.Main;
 import com.krugan.util.*;
 import com.krugan.util.interacting.ClimbClosest;
 import com.krugan.util.interacting.GetGroundItem;
+import com.krugan.util.interacting.InteractWithObject;
 import com.krugan.util.talking.TalkTo;
 import com.krugan.util.walking.WalkToArea;
 import org.dreambot.api.methods.container.impl.Inventory;
-import org.dreambot.api.methods.interactive.GameObjects;
-import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.methods.walking.pathfinding.impl.obstacle.impl.ClimbableObstacle;
-import org.dreambot.api.wrappers.interactive.Player;
 
 public class CooksAssistant extends AdvancedTask {
     public CooksAssistant(Main main) {

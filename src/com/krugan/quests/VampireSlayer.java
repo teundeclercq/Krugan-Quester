@@ -1,14 +1,11 @@
-package com.krugan.quests.vampireslayer;
+package com.krugan.quests;
 
 import com.krugan.quester.Main;
 import com.krugan.util.AdvancedTask;
-import com.krugan.util.InteractWithObject;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.map.Tile;
-import org.dreambot.api.methods.tabs.Tab;
-import org.dreambot.api.methods.tabs.Tabs;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.wrappers.interactive.NPC;
 

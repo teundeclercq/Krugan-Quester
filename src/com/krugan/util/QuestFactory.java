@@ -1,56 +1,27 @@
 package com.krugan.util;
 
 import com.krugan.quester.Main;
+import com.krugan.quests.CooksAssistant;
 import com.krugan.quests.ernestthechicken.ErnestTheChicken;
-import com.krugan.quests.runemysteries.RuneMysteries;
-import com.krugan.quests.vampireslayer.VampireSlayer;
+import com.krugan.quests.ImpCatcher;
+import com.krugan.quests.RestlessGhost;
+import com.krugan.quests.RuneMysteries;
+import com.krugan.quests.VampireSlayer;
+import com.krugan.quests.WitchPotion;
 
 public class QuestFactory {
     public static Task createQuest(QuestType type, Main ctx) {
         switch (type) {
             case COOKS_ASSISTANT:
-//                ArrayList<Task> cookAssistantNodes = new ArrayList<>();
-//                cookAssistantNodes.add(new StartQuestNode(ctx));
-//                cookAssistantNodes.add(new GetBucketNode(ctx));
-//                cookAssistantNodes.add(new GetPotNode(ctx));
-//                cookAssistantNodes.add(new GetEggNode(ctx));
-//                cookAssistantNodes.add(new GetMilkNode(ctx));
-//                cookAssistantNodes.add(new GetGrainNode(ctx));
-//                cookAssistantNodes.add(new GetFlourNode(ctx));
-//                cookAssistantNodes.add(new EndQuestNode(ctx));
-//                return cookAssistantNodes;
-                return null;
+                return new CooksAssistant(ctx);
             case SHEEP_SHEARER:
                 return null;
             case RESTLESS_GHOST:
-//                ArrayList<Task> restlessGhostNodes = new ArrayList<>();
-//                restlessGhostNodes.add(new Start(ctx));
-//                restlessGhostNodes.add(new GetGhostSpeak(ctx));
-//                restlessGhostNodes.add(new WalkToGraveyard(ctx));
-//                restlessGhostNodes.add(new GetSkull(ctx));
-//                restlessGhostNodes.add(new Finish(ctx));
-//                return restlessGhostNodes;
+                return new RestlessGhost(ctx);
             case IMP_CATCHER:
-                return null;
-
-//                ArrayList<Task> impCatcherNodes = new ArrayList<>();
-//                impCatcherNodes.add(new KillingImps(ctx));
-//                impCatcherNodes.add(new ImpCatcherStart(ctx));
-//                impCatcherNodes.add(new QuestEnd(ctx));
-//                return impCatcherNodes;
+                return new ImpCatcher(ctx);
             case WITCH_POTION:
-                return null;
-
-//                ArrayList<Task> witchPotionNodes = new ArrayList<>();
-//                witchPotionNodes.add(new GetEyeOfNewt(ctx));
-//                witchPotionNodes.add(new GetMeat(ctx));
-//                witchPotionNodes.add(new GetOnion(ctx));
-//                witchPotionNodes.add(new CookingMeat(ctx));
-//                witchPotionNodes.add(new StartWitchPotion(ctx));
-//                witchPotionNodes.add(new GetRatTail(ctx));
-//                witchPotionNodes.add(new EndWitchPotion(ctx));
-//                witchPotionNodes.add(new QuestEnd(ctx));
-//                return witchPotionNodes;
+                return new WitchPotion(ctx);
             case ERNEST_THE_CHICKEN:
                 return new ErnestTheChicken(ctx);
             case RUNE_MYSTERIES:
