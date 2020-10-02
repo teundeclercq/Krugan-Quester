@@ -1,5 +1,6 @@
 package com.krugan.util;
 
+import com.krugan.quester.Main;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
@@ -138,4 +139,12 @@ public class AreaProvider {
         public final static Area auburyShop = new Area(3255, 3400, 3252, 3403);
     }
 
+    public static class VampireSlayer {
+        public final static Area draynorBank = new Area(3092, 3246, 3095, 3240, 0);
+        public final static Area upstairsMorgan = new Area(3096, 3270, 3098, 3266, 1);
+        public final static Area MorganArea = new Area(3096, 3270, 3102, 3266);
+        public final static Area varrockInn = new Area(3218, 3402, 3229, 3394);
+        public final static Area countDraynor = new Area(3080, 9768, 3075, 9778);
+        public final static Area varrockGeneralStore =new Area(3214, 3419, 3220, 3411);
+    }
 }

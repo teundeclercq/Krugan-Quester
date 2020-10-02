@@ -22,7 +22,6 @@ public class TalkToVeronica extends AdvancedTask {
         super(main);
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.veronicaArea));
         this.tasks.add(new TalkTo(main, "Veronica", "Talk-to", 1));
-        this.tasks.add(new TalkTo(main, "Veronica", "Talk-to", 0));
     }
 
     public boolean isFinished() {

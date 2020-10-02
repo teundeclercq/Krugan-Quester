@@ -37,7 +37,7 @@ public class WitchPotion extends AdvancedTask {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.WitchPotion.hetty));
             this.tasks.add(new TalkTo(main, "Hetty", "Talk-to", 1));
-            this.tasks.add(new TalkTo(main, "Hetty", "Talk-to", 0));
+            this.tasks.add(new TalkTo(main, "Hetty", "Talk-to", 1));
         }
 
         @Override
@@ -55,7 +55,7 @@ public class WitchPotion extends AdvancedTask {
         public getRatTail(Main main) {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.WitchPotion.ratArea));
-            this.tasks.add(new AttackNpcAndLoot(main, "Rat", AreaProvider.WitchPotion.ratArea, "Rat's tail"));
+            this.tasks.add(new AttackNpcAndLoot(main, "Rat", AreaProvider.WitchPotion.ratArea, new String[] {"Rat's tail"}));
             this.tasks.add(new GetGroundItem(main, "Rat's tail"));
         }
 
@@ -83,6 +83,10 @@ public class WitchPotion extends AdvancedTask {
         }
 
         @Override
+        public boolean isFinished() {
+            return Inventory.contains("Onion");
+        }
+        @Override
         public String toString() {
             return "Getting onion";
         }
@@ -92,7 +96,7 @@ public class WitchPotion extends AdvancedTask {
         public getMeat(Main main) {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.WitchPotion.cowArea));
-            this.tasks.add(new AttackNpcAndLoot(main, "Cow", AreaProvider.WitchPotion.cowArea, "Raw beef"));
+            this.tasks.add(new AttackNpcAndLoot(main, "Cow", AreaProvider.WitchPotion.cowArea, new String[] {"Raw beef" }));
         }
 
         @Override
@@ -110,7 +114,7 @@ public class WitchPotion extends AdvancedTask {
         public getEye(Main main) {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.WitchPotion.eyeofNewtShop));
-            this.tasks.add(new TalkTo(main, "Hetty", "Trade", 0) {
+            this.tasks.add(new TalkTo(main, "Betty", "Trade", 0) {
                 @Override
                 public boolean isFinished() {
                     return Shop.isOpen();
@@ -134,8 +138,8 @@ public class WitchPotion extends AdvancedTask {
         public cookMeat(Main main) {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.WitchPotion.cookArea));
-            this.tasks.add(new UseItemOnGameObject(main, "Range", "Cook", ""));
-            this.tasks.add(new UseItemOnGameObject(main, "Range", "Cook", ""));
+            this.tasks.add(new UseItemOnGameObject(main, "Range", "Raw beef", ""));
+            this.tasks.add(new UseItemOnGameObject(main, "Range", "Cooked meat", ""));
         }
 
         @Override
@@ -157,6 +161,8 @@ public class WitchPotion extends AdvancedTask {
             this.tasks.add(new TalkTo(main, "Hetty", "Talk-to", 0));
             this.tasks.add(new TalkTo(main, "Hetty", "Talk-to", 0));
             this.tasks.add(new InteractWithObject(main, "Cauldron", "Drink From", ""));
+            this.tasks.add(new TalkTo(main, null, null, 0));
+
         }
 
         @Override

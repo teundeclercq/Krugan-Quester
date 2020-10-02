@@ -33,15 +33,20 @@ public class TalkTo extends AdvancedTask {
             npc.interact(action);
             sleep(Calculations.random(1500, 2750));
         }
-        if (Dialogues.inDialogue())
+        if (Dialogues.inDialogue()) {
             while (Dialogues.canContinue()) {
                 Dialogues.spaceToContinue();
                 sleep(Calculations.random(2000, 2500));
             }
-        if (option != 0) {
-            if (Dialogues.getOptions().length > 0) {
-                Dialogues.chooseOption(option);
-                sleep(Calculations.random(1750, 3250));
+            if (option != 0) {
+                if (Dialogues.getOptions().length > 0) {
+                    Dialogues.chooseOption(option);
+                    sleep(Calculations.random(1750, 3250));
+                }
+            }
+            while (Dialogues.canContinue()) {
+                Dialogues.spaceToContinue();
+                sleep(Calculations.random(2000, 2500));
             }
         }
         this.doneTalkingTo = true;

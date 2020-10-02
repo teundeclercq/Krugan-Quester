@@ -9,6 +9,7 @@ import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.wrappers.interactive.GameObject;
 
 import static org.dreambot.api.methods.MethodProvider.log;
+import static org.dreambot.api.methods.MethodProvider.sleepUntil;
 
 public class ClimbClosest extends AdvancedTask {
     protected int floors;
@@ -20,12 +21,19 @@ public class ClimbClosest extends AdvancedTask {
         this.floors = floors;
         this.isUp = isUp;
         this.isStairs = isStairs;
+        zGoal = main.getLocalPlayer().getZ() + floors;
     }
 
 
     @Override
     public int execute() {
-        climbClosest();
+        if ((main.getLocalPlayer().getZ() != zGoal)) {
+            GameObject climbable = GameObjects.closest((this.isStairs) ? ("Stairs") : ("Ladder"));
+            if (climbable != null) {
+                climbable.interact((this.isUp) ? ("Climb-up") : ("Climb-down"));
+                sleepUntil(() -> !main.getLocalPlayer().isAnimating(), Calculations.random(3000, 6000));
+            }
+        }
         return Calculations.random(3000, 4000);
     }
 
@@ -34,17 +42,4 @@ public class ClimbClosest extends AdvancedTask {
         return main.getLocalPlayer().getZ() == zGoal;
     }
 
-    private boolean climbClosest() {
-        int attempts = 0;
-        zGoal = main.getLocalPlayer().getZ() + floors;
-        while ((main.getLocalPlayer().getZ() != zGoal) || attempts > ((this.floors >= 5) ? (10) : (5))) {
-            GameObject climbable = GameObjects.closest((this.isStairs) ? ("Stairs") : ("Ladder"));
-            if (climbable != null) {
-                climbable.interact((this.isUp) ? ("Climb-up") : ("Climb-down"));
-                attempts++;
-                MethodProvider.sleepUntil(() -> !main.getLocalPlayer().isAnimating(), Calculations.random(3000, 6000));
-            }
-        }
-        return true;
-    }
 }

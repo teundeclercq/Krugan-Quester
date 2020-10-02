@@ -17,6 +17,10 @@ import static org.dreambot.api.methods.MethodProvider.sleepUntil;
 public class ImpCatcher extends AdvancedTask {
     public ImpCatcher(Main main) {
         super(main);
+    }
+
+    @Override
+    public void AddTask() {
         this.main.addTasks(new killImpLootBeads(main));
         this.main.addTasks(new startAndEndImpCatcher(main));
         this.main.addTasks(new QuestEnd(main));
@@ -26,7 +30,15 @@ public class ImpCatcher extends AdvancedTask {
     public class killImpLootBeads extends AdvancedTask {
         public killImpLootBeads(Main main) {
             super(main);
-            this.tasks.add(new AttackNpcAndLoot(main, "Imp", AreaProvider.ImpCatcher.impKillingArea, "Black bead", "Yellow bead", "White bead", "Red bead"));
+            this.tasks.add(new AttackNpcAndLoot(main, "Imp", AreaProvider.ImpCatcher.impKillingArea, new String[] {"Black bead", "Yellow bead", "White bead", "Red bead" }) {
+                @Override
+                public boolean isFinished() {
+                    return Inventory.contains("Yellow bead") &&
+                            Inventory.contains("White bead") &&
+                            Inventory.contains("Black bead") &&
+                            Inventory.contains("Red bead");
+                }
+            });
         }
 
         @Override

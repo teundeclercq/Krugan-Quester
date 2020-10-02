@@ -37,7 +37,6 @@ public class RuneMysteries extends AdvancedTask {
             this.tasks.add(new WalkToArea(main,AreaProvider.RuneMysteries.dukeArea));
             this.tasks.add(new TalkTo(main, "Duke Horacio", "Talk-to", 1));
             this.tasks.add(new TalkTo(main, "Duke Horacio", "Talk-to", 1));
-            this.tasks.add(new TalkTo(main, "Duke Horacio", "Talk-to", 0));
         }
         @Override
         public boolean isFinished() {
@@ -62,7 +61,6 @@ public class RuneMysteries extends AdvancedTask {
             this.tasks.add(new TalkTo(main, "Sedridor", "Talk-to", 3));
             this.tasks.add(new TalkTo(main, "Sedridor", "Talk-to", 1));
             this.tasks.add(new TalkTo(main, "Sedridor", "Talk-to", 1));
-            this.tasks.add(new TalkTo(main, "Sedridor", "Talk-to", 0));
         }
 
         @Override
@@ -86,7 +84,6 @@ public class RuneMysteries extends AdvancedTask {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.RuneMysteries.auburyShop));
             this.tasks.add(new TalkTo(main, "Aubury", "Talk-to", 3));
-            this.tasks.add(new TalkTo(main, "Aubury", "Talk-to", 0));
             this.tasks.add(new TalkTo(main, "Aubury", "Talk-to", 0));
         }
         @Override

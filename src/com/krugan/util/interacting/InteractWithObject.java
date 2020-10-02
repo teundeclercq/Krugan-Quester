@@ -33,12 +33,12 @@ public class InteractWithObject extends AdvancedTask implements ChatListener {
 
     public int execute() {
         if (!this.main.getLocalPlayer().isAnimating()) {
-            GameObject object = GameObjects.closest(this.obj);
+            GameObject object = GameObjects.closest(_object -> _object.hasAction(action) && _object.getName().equals(this.obj));
             if (object != null) {
-                log("Interacting with");
-                if (object.hasAction(action) && object.interact(action)) {
-                    sleepUntil(() -> this.main.getLocalPlayer().isAnimating(), Calculations.random(3000, 4000));
-                }
+                    Camera.rotateToEntity(object);
+                    object.interact(action);
+                    log("Interacting with");
+                    sleepUntil(() -> main.getLocalPlayer().isAnimating(), Calculations.random(3000, 4000));
             }
         }
         return Calculations.random(3000, 4000);

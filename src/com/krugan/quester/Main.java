@@ -52,7 +52,7 @@ public class Main extends AbstractScript {
 
     @Override
     public int onLoop() {
-        log(PlayerSettings.getConfig(FreeQuest.ERNEST_THE_CHICKEN.getConfigID()));
+        log(PlayerSettings.getConfig(FreeQuest.VAMPIRE_SLAYER.getConfigID()));
         if (isRunning) {
             if (this.tasks.isEmpty()) {
                 log("No more available nodes, script has ended.");
@@ -64,7 +64,6 @@ public class Main extends AbstractScript {
                     while (iterator.hasNext()) {
                         Task task = (Task) iterator.next();
                         if (!task.isFinished()) {
-                            log(task.toString());
                             setStateClient(task.toString());
                             return task.execute();
                         }

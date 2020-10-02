@@ -13,20 +13,31 @@ public class GetOil extends AdvancedTask {
     public GetOil(Main main) {
         super(main);
         this.tasks.add(new InteractWithObject(main, "Lever B", "Pull", "You pull lever B down."));
-
+        this.tasks.add(new sleepTask(main, 2000, 3000));
         this.tasks.add(new InteractWithObject(main, "Lever A", "Pull", "You pull lever A down."));
+        this.tasks.add(new sleepTask(main, 4000, 5000));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile1));
         this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
+        this.tasks.add(new sleepTask(main, 2000, 3000));
+
 
         this.tasks.add(new InteractWithObject(main, "Lever D", "Pull", "You pull lever D down."));
+        this.tasks.add(new sleepTask(main, 4000, 5000));
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile2));
+        this.tasks.add(new sleepTask(main, 2000, 3000));
         this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
+        this.tasks.add(new sleepTask(main, 2000, 3000));
+
 
         this.tasks.add(new InteractWithObject(main, "Lever B", "Pull", "You pull lever B up."));
+        this.tasks.add(new sleepTask(main, 2000, 3000));
+
 
         this.tasks.add(new InteractWithObject(main, "Lever A", "Pull", "You pull lever A up."));
+        this.tasks.add(new sleepTask(main, 4000, 5000));
+
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile3));
         this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
@@ -38,8 +49,12 @@ public class GetOil extends AdvancedTask {
         this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
         this.tasks.add(new InteractWithObject(main, "Lever E", "Pull", "You pull lever E down."));
+        this.tasks.add(new sleepTask(main, 4000, 5000));
+
 
         this.tasks.add(new InteractWithObject(main, "Lever F", "Pull", "You pull lever F down."));
+        this.tasks.add(new sleepTask(main, 4000, 5000));
+
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile9));
         this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
@@ -48,6 +63,8 @@ public class GetOil extends AdvancedTask {
         this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
         this.tasks.add(new InteractWithObject(main, "Lever C", "Pull", "You pull lever C down."));
+        this.tasks.add(new sleepTask(main, 4000, 5000));
+
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile12));
         this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
@@ -56,6 +73,8 @@ public class GetOil extends AdvancedTask {
         this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));
 
         this.tasks.add(new InteractWithObject(main, "Lever E", "Pull", "You pull lever E up."));
+        this.tasks.add(new sleepTask(main, 4000, 5000));
+
 
         this.tasks.add(new WalkToTile(main, AreaProvider.ErnestTheChick.tile9));
         this.tasks.add(new InteractWithObject(main,  "Door", "Open", null));

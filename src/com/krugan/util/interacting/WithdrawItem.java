@@ -6,6 +6,7 @@ import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.bank.Bank;
 
+import static org.dreambot.api.methods.MethodProvider.log;
 import static org.dreambot.api.methods.MethodProvider.sleepUntil;
 
 public class WithdrawItem extends AdvancedTask {
@@ -25,8 +26,8 @@ public class WithdrawItem extends AdvancedTask {
             if (Bank.contains(item)) {
                 Bank.withdraw(item, amount);
                 sleepUntil(() -> Inventory.contains(item), Calculations.random(880, 1450));
-                Bank.close();
             } else {
+                log("Bank does not contain item: "+ item);
                 main.stop();
             }
         }

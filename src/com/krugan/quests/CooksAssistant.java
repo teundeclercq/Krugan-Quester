@@ -8,12 +8,17 @@ import com.krugan.util.interacting.InteractWithObject;
 import com.krugan.util.talking.TalkTo;
 import com.krugan.util.walking.WalkToArea;
 import org.dreambot.api.methods.container.impl.Inventory;
+import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 
 public class CooksAssistant extends AdvancedTask {
     public CooksAssistant(Main main) {
         super(main);
+    }
+
+    @Override
+    public void AddTask() {
         this.main.addTasks(new startCooksAssistant(main));
         this.main.addTasks(new getPot(main));
         this.main.addTasks(new getBucket(main));
@@ -25,10 +30,12 @@ public class CooksAssistant extends AdvancedTask {
         this.main.addTasks(new QuestEnd(main));
         this.main.setRunning(true);
     }
+
     private class startCooksAssistant extends AdvancedTask {
         public startCooksAssistant(Main main) {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.CooksAssistant.cookArea));
+            this.tasks.add(new TalkTo(main, "Cook", "Talk-to", 1));
             this.tasks.add(new TalkTo(main, "Cook", "Talk-to", 1));
         }
 
@@ -47,13 +54,21 @@ public class CooksAssistant extends AdvancedTask {
     private class getBucket extends AdvancedTask {
         public getBucket(Main main) {
             super(main);
+            this.tasks.add(new WalkToArea(main, AreaProvider.CooksAssistant.cookArea));
+            this.tasks.add(new InteractWithObject(main, "Trapdoor", "Climb-down", ""));
             this.tasks.add(new WalkToArea(main, AreaProvider.CooksAssistant.basementArea));
-            this.tasks.add(new GetGroundItem(main, "Bucket"));
+            this.tasks.add(new GetGroundItem(main, "Bucket") {
+                @Override
+                public boolean isFinished() {
+                    return Inventory.contains("Bucket");
+                }
+            });
+            this.tasks.add(new InteractWithObject(main, "Ladder", "Climb-up", ""));
         }
 
         @Override
         public boolean isFinished() {
-            return Inventory.contains("Bucket");
+            return true;
         }
 
         @Override
@@ -83,7 +98,7 @@ public class CooksAssistant extends AdvancedTask {
         public getMilk(Main main) {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.CooksAssistant.cowArea));
-            this.tasks.add(new InteractWithObject(main, "Cow", "Milk", ""));
+            this.tasks.add(new InteractWithObject(main, "Dairy cow", "Milk", ""));
         }
 
         @Override
@@ -101,6 +116,7 @@ public class CooksAssistant extends AdvancedTask {
         public getFlour(Main main) {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.CooksAssistant.windMillArea));
+            this.tasks.add(new InteractWithObject(main, "Large Door", "Open", ""));
             this.tasks.add(new ClimbClosest(main, 2, true, false));
             this.tasks.add(new InteractWithObject(main, "Hopper", "Fill", ""));
             this.tasks.add(new InteractWithObject(main, "Hopper controls", "Operate", ""));
@@ -143,7 +159,8 @@ public class CooksAssistant extends AdvancedTask {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.CooksAssistant.cookArea));
             this.tasks.add(new TalkTo(main, "Cook", "Talk-to", 1));
-            this.tasks.add(new TalkTo(main, "Cook", "Talk-to", 0));
+            this.tasks.add(new TalkTo(main, "Cook", "Talk-to", 1));
+
         }
 
         @Override
@@ -162,6 +179,11 @@ public class CooksAssistant extends AdvancedTask {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.CooksAssistant.chickenArea));
             this.tasks.add(new GetGroundItem(main, "Egg"));
+        }
+
+        @Override
+        public boolean isFinished() {
+            return Inventory.contains("Egg");
         }
 
         @Override

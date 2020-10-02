@@ -7,6 +7,7 @@ import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.input.Camera;
 import org.dreambot.api.methods.interactive.NPCs;
+import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Map;
@@ -22,7 +23,7 @@ public class AttackNpcAndLoot extends AdvancedTask {
     protected String[] itemToPickup;
     protected Area area;
 
-    public AttackNpcAndLoot(Main main, String npc, Area area, String... itemToPickup) {
+    public AttackNpcAndLoot(Main main, String npc, Area area, String[] itemToPickup) {
         super(main);
         this.npc = npc;
         this.itemToPickup = itemToPickup;
@@ -31,10 +32,10 @@ public class AttackNpcAndLoot extends AdvancedTask {
 
     @Override
     public int execute() {
-        NPC npcToKill = NPCs.closest(npc  -> npc.getName().equals(this.npc) && !npc.isInCombat() && npc.isOnScreen() && Map.canReach(npc));
+        NPC npcToKill = NPCs.closest(npc  -> npc.getName().equals(this.npc) && Map.canReach(npc) && npc.canAttack());
 
         GroundItem groundItem = GroundItems.closest(this.itemToPickup);
-        if (!Inventory.contains(this.itemToPickup)) {
+        if (!Inventory.containsAll(this.itemToPickup)) {
             if (groundItem != null) {
                 Walking.walk(groundItem);
                 sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(5000, 8000));
@@ -52,12 +53,16 @@ public class AttackNpcAndLoot extends AdvancedTask {
                 if (npcToKill.interact("Attack")) {
                     sleepUntil(() -> main.getLocalPlayer().isInCombat() || main.getLocalPlayer().getInteractingCharacter() != null, Calculations.random(2000, 3500));
                     sleep(Calculations.random(2000, 4000));
+
                 }
             }
             return Calculations.random(2000, 3500);
         } else {
-            Walking.walk(area.getRandomTile());
-            sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 4000));
+            if (!main.getLocalPlayer().isMoving()) {
+                Walking.walk(area.getRandomTile());
+                sleepUntil(() -> main.getLocalPlayer().isStandingStill(), Calculations.random(3000, 4000));
+            }
+
         }
 
         if (Dialogues.canContinue()) {

@@ -12,7 +12,6 @@ public class GetRubberTube extends AdvancedTask {
     public GetRubberTube(Main main) {
         super(main);
         this.tasks.add(new WalkToArea(main, AreaProvider.ErnestTheChick.ruberTubeArea));
-        this.tasks.add(new WalkToGroundItem(main, "Rubber tube"));
         this.tasks.add(new GetGroundItem(main, "Rubber tube"));
     }
 
