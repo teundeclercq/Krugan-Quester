@@ -10,6 +10,9 @@ Quest script made with the Dreambot [api](https://dreambot.org/javadocs/). The s
 
 1. Open the project with your IDE
 2. Import the client.jar from Dreambot into the project
+
+<img width="560" alt="project structure afbeelding" src="https://user-images.githubusercontent.com/42863867/95125430-4075ab00-0755-11eb-962a-c6709b867cb4.png">
+
 3. Build the project.
 4. Copy the .jar file to the Scripts folder of Dreambot. 
   - Windows users: C:\Users\VladBots\DreamBot\Scripts where VladBots is your Windows username.
