@@ -16,7 +16,9 @@ Quest script made with the Dreambot [api](https://dreambot.org/javadocs/). The s
 3. Create the artifact and set up the compiled output inside the .jar file. Set the output file to the folder of dreambot.
 <img width="560" alt="project structure artifacts" src="https://user-images.githubusercontent.com/42863867/95126669-1fae5500-0757-11eb-904d-e793b78d578b.png">
 
-4. Close the interface. Double tab shift and type in: "Build artifacts..", Tab enter twice.
+4. Close the interface. Double tab shift and type in: "Build artifacts..", enter twice.
+
+<img width="230" alt="Schermafbeelding 2020-10-05 om 22 23 09" src="https://user-images.githubusercontent.com/42863867/95128247-6f8e1b80-0759-11eb-8dd5-6007fac5a212.png">
 
 4. Copy the .jar file to the Scripts folder of Dreambot. 
   - Windows users: C:\Users\VladBots\DreamBot\Scripts where VladBots is your Windows username.
