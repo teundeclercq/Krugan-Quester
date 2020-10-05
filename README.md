@@ -18,11 +18,9 @@ Quest script made with the Dreambot [api](https://dreambot.org/javadocs/). The s
 
 4. Close the interface. Double tab shift and type in: "Build artifacts..", enter twice.
 
+<img width="670" alt="Schermafbeelding 2020-10-05 om 22 25 04" src="https://user-images.githubusercontent.com/42863867/95128425-afed9980-0759-11eb-8461-ebf59c5224c2.png">&nbsp;<br/>
 <img width="230" alt="Schermafbeelding 2020-10-05 om 22 23 09" src="https://user-images.githubusercontent.com/42863867/95128247-6f8e1b80-0759-11eb-8dd5-6007fac5a212.png">
 
-4. Copy the .jar file to the Scripts folder of Dreambot. 
-  - Windows users: C:\Users\VladBots\DreamBot\Scripts where VladBots is your Windows username.
-  - Mac users: 
 ---
 ### Using
 
