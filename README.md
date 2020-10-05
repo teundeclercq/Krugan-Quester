@@ -7,6 +7,7 @@ Quest script made with the Dreambot [api](https://dreambot.org/javadocs/). The s
 
 
 ### Building
+---
 
 1. Open the project with your IDE
 2. Import the client.jar from Dreambot into the project
