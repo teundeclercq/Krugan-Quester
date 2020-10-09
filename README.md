@@ -5,7 +5,7 @@ Quest script made with the Dreambot [api](https://dreambot.org/javadocs/). The s
 - [Articron quest framework](https://github.com/articron/Quest-skeleton/tree/master/src/org/dreambot/articron)
 
 
-## Why did i build this script?
+## Why did I build this script?
 I build this script because i wanted to learn how to build a bot script. The reason i started coding was because i wanted to learn how to create bot scripts. I also didn't want to pay for existing premium scripts, thats why i thought it would be fun to create my own. This vacaction i got in contact with a coder on youtube, turned out he as a [respected](https://dreambot.org/forums/index.php?/profile/18109-hoodz/) coder on the dreambot. I asked him a few on what client to use and he told me dreambot was one of the best. I asked him why and he told me that is was because it was one of the bot sites that had no corrupt moderators. 
 
 ![questions](https://user-images.githubusercontent.com/42863867/95595612-a5c6e600-0a4c-11eb-8536-17ff8e747747.png) 
