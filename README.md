@@ -1,6 +1,6 @@
 # KruganQuester
 
-Quest script made with the Dreambot [api](https://dreambot.org/javadocs/). The script is made with a basic [node framework](https://dreambot.org/forums/index.php?/topic/1747-basic-node-framework-w-example-node/) as a base for creating quests. I also used the [forums](https://dreambot.org/forums/index.php) of Dreambot to find information about how to use the Api. For this script I looked at alot of examples:
+Quest script made with the Dreambot [api](https://dreambot.org/javadocs/). The script is made with a basic [node framework](https://dreambot.org/forums/index.php?/topic/1747-basic-node-framework-w-example-node/) as a base for creating quests. I also used the [forums](https://dreambot.org/forums/index.php) of Dreambot to find information about how to use the Api. For this script I looked at the following example:
 
 - [Articron quest framework](https://github.com/articron/Quest-skeleton/tree/master/src/org/dreambot/articron)
 
