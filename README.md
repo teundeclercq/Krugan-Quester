@@ -25,11 +25,29 @@ Quest script made with the Dreambot [api](https://dreambot.org/javadocs/). The s
 ### Using
 
 1. Start Dreambot.
+<img width="560" alt="2020-10-09 11_09_17-Window" src="https://user-images.githubusercontent.com/42863867/95583804-fb939200-0a3c-11eb-96d3-295d2c39665a.png">$nbsp;<br/>
+![2020-10-09 11_08_55-Window](https://user-images.githubusercontent.com/42863867/95583708-d3a42e80-0a3c-11eb-8fca-ef8bc9427f74.png)
+
 2. Click play button.
+
+![PlayButton](https://user-images.githubusercontent.com/42863867/95583959-3a294c80-0a3d-11eb-8fca-c5b4f5d403e8.png)
+
 3. Select "See only local scripts".
+
+![Localscripts](https://user-images.githubusercontent.com/42863867/95584416-ff73e400-0a3d-11eb-884c-04aa6772ea5f.png)
+
 4. Start the script.
+
+![questScript](https://user-images.githubusercontent.com/42863867/95584106-73fa5300-0a3d-11eb-808f-70e457541260.png)
+
 5. Script will start with the following GUI.
+
+![StartTheQuest](https://user-images.githubusercontent.com/42863867/95583982-3dbcd380-0a3d-11eb-8e11-f49a32c88cfe.png)
+
 6. Select a quest you want to do. It is advised to start the script in the area where the quest is for Instance start the quest Cook's assistant in lumbrige. Web walking doesn't know every location.
+
+![SelectQuestWindow](https://user-images.githubusercontent.com/42863867/95583976-3c8ba680-0a3d-11eb-87dc-aef3a4956d9d.png)
+
 ---
 ### End result
 
