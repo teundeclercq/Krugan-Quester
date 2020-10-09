@@ -25,8 +25,10 @@ Quest script made with the Dreambot [api](https://dreambot.org/javadocs/). The s
 ### Using
 
 1. Start Dreambot.
-<img width="560" alt="2020-10-09 11_09_17-Window" src="https://user-images.githubusercontent.com/42863867/95583804-fb939200-0a3c-11eb-96d3-295d2c39665a.png">$nbsp;<br/>
-![2020-10-09 11_08_55-Window](https://user-images.githubusercontent.com/42863867/95583708-d3a42e80-0a3c-11eb-8fca-ef8bc9427f74.png)
+
+<img width="230" alt="2020-10-09 11_09_17-Window" src="https://user-images.githubusercontent.com/42863867/95583804-fb939200-0a3c-11eb-96d3-295d2c39665a.png">&nbsp;<br/>
+<img width="230" alt="2020-10-09 11_08_55-Window" src="https://user-images.githubusercontent.com/42863867/95583708-d3a42e80-0a3c-11eb-8fca-ef8bc9427f74.png">
+
 
 2. Click play button.
 
