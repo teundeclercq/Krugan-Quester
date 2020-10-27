@@ -15,31 +15,30 @@ public class ClimbClosest extends AdvancedTask {
     protected int floors;
     protected boolean isUp;
     protected boolean isStairs;
-    protected int zGoal;
     public ClimbClosest(Main main, int floors, boolean isUp, boolean isStairs) {
         super(main);
         this.floors = floors;
         this.isUp = isUp;
         this.isStairs = isStairs;
-        zGoal = main.getLocalPlayer().getZ() + floors;
     }
 
 
     @Override
     public int execute() {
-        if ((main.getLocalPlayer().getZ() != zGoal)) {
+        while ((main.getLocalPlayer().getZ() != floors)) {
             GameObject climbable = GameObjects.closest((this.isStairs) ? ("Stairs") : ("Ladder"));
             if (climbable != null) {
                 climbable.interact((this.isUp) ? ("Climb-up") : ("Climb-down"));
-                sleepUntil(() -> !main.getLocalPlayer().isAnimating(), Calculations.random(3000, 6000));
+                sleepUntil(() -> main.getLocalPlayer().isAnimating(), Calculations.random(3000, 6000));
             }
+            if (main.getLocalPlayer().getZ() == floors) break;
         }
         return Calculations.random(3000, 4000);
     }
 
     @Override
     public boolean isFinished() {
-        return main.getLocalPlayer().getZ() == zGoal;
+        return main.getLocalPlayer().getZ() == floors;
     }
 
 }

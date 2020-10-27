@@ -8,6 +8,7 @@ import com.krugan.util.interacting.InteractWithObject;
 import com.krugan.util.talking.TalkTo;
 import com.krugan.util.walking.WalkToArea;
 import org.dreambot.api.methods.container.impl.Inventory;
+import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
@@ -55,7 +56,12 @@ public class CooksAssistant extends AdvancedTask {
         public getBucket(Main main) {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.CooksAssistant.cookArea));
-            this.tasks.add(new InteractWithObject(main, "Trapdoor", "Climb-down", ""));
+            this.tasks.add(new InteractWithObject(main, "Trapdoor", "Climb-down", null) {
+                @Override
+                public boolean isFinished() {
+                    return AreaProvider.CooksAssistant.basementArea.contains(main.getLocalPlayer());
+                }
+            });
             this.tasks.add(new WalkToArea(main, AreaProvider.CooksAssistant.basementArea));
             this.tasks.add(new GetGroundItem(main, "Bucket") {
                 @Override
@@ -63,12 +69,17 @@ public class CooksAssistant extends AdvancedTask {
                     return Inventory.contains("Bucket");
                 }
             });
-            this.tasks.add(new InteractWithObject(main, "Ladder", "Climb-up", ""));
+            this.tasks.add(new InteractWithObject(main, "Ladder", "Climb-up", null) {
+                @Override
+                public boolean isFinished() {
+                    return AreaProvider.CooksAssistant.cookArea.contains(main.getLocalPlayer()) && Inventory.contains("Bucket");
+                }
+            });
         }
 
         @Override
         public boolean isFinished() {
-            return true;
+            return Inventory.contains("Bucket") && AreaProvider.CooksAssistant.cookArea.contains(main.getLocalPlayer());
         }
 
         @Override
@@ -116,12 +127,26 @@ public class CooksAssistant extends AdvancedTask {
         public getFlour(Main main) {
             super(main);
             this.tasks.add(new WalkToArea(main, AreaProvider.CooksAssistant.windMillArea));
-            this.tasks.add(new InteractWithObject(main, "Large Door", "Open", ""));
+            this.tasks.add(new InteractWithObject(main, "Large door", "Open", null));
+
+            this.tasks.add(new ClimbClosest(main, 1, true, false));
+            this.tasks.add(new sleepTask(main, 2000, 3000));
+
             this.tasks.add(new ClimbClosest(main, 2, true, false));
-            this.tasks.add(new InteractWithObject(main, "Hopper", "Fill", ""));
-            this.tasks.add(new InteractWithObject(main, "Hopper controls", "Operate", ""));
-            this.tasks.add(new ClimbClosest(main, -2, false, false));
-            this.tasks.add(new InteractWithObject(main, "Flour bin", "Empty", ""));
+            this.tasks.add(new sleepTask(main, 2000, 3000));
+
+            this.tasks.add(new InteractWithObject(main, "Hopper", "Fill", "You put the grain in the hopper. You should now pull the lever nearby to operate the hopper."));
+            this.tasks.add(new sleepTask(main, 2000, 3000));
+
+            this.tasks.add(new InteractWithObject(main, "Hopper controls", "Operate", "You operate the hopper. The grain slides down the chute."));
+
+            this.tasks.add(new ClimbClosest(main, 1, false, false));
+            this.tasks.add(new sleepTask(main, 2000, 3000));
+
+            this.tasks.add(new ClimbClosest(main, 0, false, false));
+            this.tasks.add(new sleepTask(main, 2000, 3000));
+
+            this.tasks.add(new InteractWithObject(main, "Flour bin", "Empty", null));
         }
 
         @Override

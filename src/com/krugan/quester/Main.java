@@ -12,6 +12,8 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
+import org.dreambot.api.script.listener.ChatListener;
+import org.dreambot.api.wrappers.widgets.message.Message;
 
 import javax.swing.*;
 import java.awt.*;
@@ -95,5 +97,6 @@ public class Main extends AbstractScript {
         g.setFont(new Font("Avenier", Font.PLAIN, 12));
         g.drawString("State: " + stateClient, 10, 35);
     }
+
 
 }
